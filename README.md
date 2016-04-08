@@ -4,11 +4,12 @@
   - Android Studio
   - Eclipse
 - 更新 AndroidManifest.xml
-- 原生廣告Layout
-- 初始化SDK
-- 載入並且展示原生廣告
-- 在ListView載入與展示原生廣告
-- 串接影音插頁廣告(Interstitial)
+- 卡片型原生影音廣告
+  - Layout
+  - 初始化SDK
+  - 載入並且展示原生影音廣告
+* ListView 型原生影音廣告
+* 影音插頁廣告(Interstitial)
 
 ## 概論
 原生廣告沒有固定的規格大小，需要透過應用程式開發者的巧思將廣告的素材重新設計與編排後融合到使用者介面之中。
@@ -17,7 +18,7 @@
 
 除此之外在原本的橫幅和插頁廣告版位外，可以在更多版位擺放廣告 **創造更多收入來源。**
 
-<TODO - Native Video Ads Example>
+<TODO - Native Video Ads Pic Example>
 
 ## 導入SDK
 ### Android Studio
@@ -77,16 +78,92 @@ dependencies {
    android:theme="@style/AppTheme">
 ```
 
-## 原生廣告Layout
+## 卡片型原生影音廣告
+### Layout
+---
+您可以直接套用範例專案中的 custom_video_ad_list_item.xml ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
+```java
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/custom_out_layout"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content">
+   <ImageView android:id="@+id/native_main_image"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@null"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:scaleType="fitXY"
+       android:adjustViewBounds="true" />
+   <com.core.adnsdk.VideoPlayer
+       android:id="@+id/native_video_layout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:layout_marginBottom="10dp"
+       android:layout_below="@id/native_main_image"
+       android:layout_centerHorizontal="true" />
+   <RelativeLayout
+       android:id="@+id/native_video_title_block"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:layout_alignBottom="@id/native_video_layout"
+       android:background="#af000000" >
+       <ImageView
+           android:id="@+id/native_icon_image"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
+           android:scaleType="centerCrop" />
+       <TextView
+           android:id="@+id/native_title"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_centerVertical="true"
+           android:gravity="center"
+           android:singleLine="true"
+           android:textColor="#ffffff"
+           android:textSize="15dp"
+           android:layout_toRightOf="@id/native_icon_image" />
+   </RelativeLayout>
+   <TextView android:id="@+id/native_cta"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginRight="3dp"
+       android:layout_marginBottom="3dp"
+       android:gravity="center_horizontal"
+       android:layout_above="@id/native_video_title_block"
+       android:layout_alignRight="@id/native_video_layout" />
+   <ImageView android:id="@+id/native_loading_image"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true"
+       android:scaleType="centerCrop"
+       android:src="@drawable/native_loading_image"/>
+</RelativeLayout>
+```
+  文字和圖片等素材使用標準的 TextView 和 ImageView 呈現即可，但**用來播放影音廣告的元件請務必使用 com.core.adnsdk.VideoPlayer**。
+
+<TODO - Layout example>
+
+### 初始化SDK
+---
 
 
-## 初始化SDK
+### 載入並且展示原生影片廣告
+---
 
-
-## 載入並且展示原生廣告
  
 
-## 在ListView載入與展示原生廣告
+## ListView 型原生影片廣告
 
 
 ## 串接影音插頁廣告(Interstitial)
