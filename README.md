@@ -46,6 +46,7 @@ dependencies {
 1. 修改 AndroidManifest.xml 加入必要的權限
    
     ```java
+//Required permissions
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -156,6 +157,22 @@ dependencies {
 
 ### 初始化SDK
 ---
+在 Application 的進入點,呼叫 ADN.initialize 方法並且傳入 Context 和 API KEY 進行SDK的初始化。**在初始化時一定要填入正確的 API KEY ，否則無法取得線上販售的廣告獲得分潤。**
+
+```java
+    public class MyApplication extends Application {
+       @Override
+       public void onCreate() {
+           super.onCreate();
+           /**
+           initialize(Context context, String YOUR_APIKEY);
+            * context: Application Context
+            * apiKey: 向後台請求廣告需要用的字串
+           */
+           ADN.initialize(this, "55e7b3df0cfbf7393bb00af1");
+       }
+    }
+```
 
 
 ### 載入並且展示原生影片廣告
