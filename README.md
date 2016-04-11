@@ -79,7 +79,7 @@ dependencies {
    android:theme="@style/AppTheme">
 ```
 
-## 卡片型原生影音廣告
+## CardView 原生影音廣告
 ### Layout
 ---
 您可以直接套用範例專案中的 custom_video_ad_list_item.xml ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
@@ -157,7 +157,7 @@ dependencies {
 
 ### 初始化SDK
 ---
-在 Application 的進入點,呼叫 ADN.initialize 方法並且傳入 Context 和 API KEY 進行SDK的初始化。**在初始化時一定要填入正確的 API KEY ，否則無法取得線上販售的廣告獲得分潤。**
+在 Application 的進入點,呼叫 ADN.initialize 方法並且傳入 Context 和 API KEY 進行 SDK 的初始化。**在初始化時一定要填入正確的 API KEY ，否則無法取得線上販售的廣告獲得分潤。**
 
 ```java
     public class MyApplication extends Application {
@@ -174,13 +174,101 @@ dependencies {
     }
 ```
 
-
 ### 載入並且展示原生影片廣告
 ---
+1. 開始撰寫代碼之前,需要先引入以下的物件,完整的程式碼請參考 ExampleNative.java
 
- 
+    ```java
+import com.core.adnsdk.AdCustom;
+import com.core.adnsdk.AdListener;
+import com.core.adnsdk.AdObject;
+import com.core.adnsdk.CardAdRenderer;
+import com.core.adnsdk.CardViewBinder;
+import com.core.adnsdk.ErrorMessage;
+```
+2. 創建 CardViewBinder ，透過 CardViewBinder 指定廣告素材和 UI 元件的關係
+    * ```public final Builder loadingId(final int loadingId)```：綁定 Loading image 與 UI 元件
+    * ```public final Builder titleId(final int titleId)```：綁定標題文字與 UI 元件
+    * ```public final Builder subTitleId(final int subTitleId)```：綁定副標題文字與 UI 元件
+    * ```public final Builder descriptionId(final int descriptionId)```：綁定描述文字與 UI 文件
+    * ```public final Builder videoPlayerId(final int videoPlayerId)```：綁定影片與 Video Player
+    * ```public final Builder iconImageId(final int iconImageId)```：綁定圖示與 UI 元件
+    * ```public final Builder mainImageId(final int mainImageId)```：綁定圖片與 UI 元件
+    * ```public final Builder callToActionId(final int callToActionId)```：綁定 CTA 文字與 UI 文件
+    
+    範例：
+    ```java
+    // native video layout builder
+    CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.card_ad_item)
+       .loadingId(R.id.native_loading_image)
+       .mainImageId(R.id.native_main_image)
+       .titleId(R.id.native_title)
+       .videoPlayerId(R.id.native_video_layout)
+       .iconImageId(R.id.native_icon_image)
+       .callToActionId(R.id.native_cta)
+       .build();
+    ```
+    
+3. 創建 CardAdRenderer 物件，利用上一步的 CardViewBinder
+    ```java
+    // set layout builder to renderer
+    CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
+    ```
+    
+4. 創建 AdCustom 物件 :
+    ```java
+    AdCustom(Activity activity, String placeName, CardAdRenderer renderer, ViewGroup parent)
+    ```
+    * ```activity```：Activity context
+    * ```placement```：任意字串。此字串會傳送到後台，可利用此字串在後台查詢廣告數據與收益
+    * ```renderer```：CardAdRenderer 物件
+    * ```parent```：要包含原生廣告 View 的 ViewGroup
+    
+    範例：
+    ```java
+    mNativeAd = new AdCustom(this, "placement(custom)", vRenderer, mainContainer);
+    ```
+5. 設定並且實作 AdListener：
 
-## ListView 型原生影片廣告
+    ```java
+    public interface AdListener {
+     void onAdLoaded(AdObject adObject); // 廣告完成載入
+     void onError(ErrorMessage err); // SDK出現錯誤
+     void onAdClicked(); //廣告被點擊
+     void onAdFinished(); //廣告點擊完成跳轉後
+     void onAdReleased(); //廣告完成卸載並且釋放所有資源
+     boolean onAdWatched(); //影片播放完畢,要自動載入下一檔廣告請回傳true,否則回傳false
+  }
+    ```
+6. 設定測試模式。
+
+    當打開測試模式的時候，SDK 會接受到測試用的廣告。測試廣告並沒有分潤，因此**測試完成後 App 上線前請一定要關閉測試模式。(設成 false )**
+    ```java
+    mNativeAd.setTestMode(true)
+    ```
+
+7. 在 LifeCycle 的函式中，呼叫對應的 AdCustom 的 LifeCycle 方法避免內存洩漏。
+    ```java
+    @Override
+      protected void onResume() {
+         mNativeAd.onResume();
+         super.onResume();
+      }
+      
+      @Override
+      protected void onPause() {
+         mNativeAd.onPause();
+         super.onPause();
+      }
+      
+      @Override
+      protected void onDestroy() {
+         mNativeAd.onDestroy();
+         super.onDestroy();
+      }
+    ```
+    
+## ListView 原生影片廣告
 
 
 ## 串接影音插頁廣告(Interstitial)
