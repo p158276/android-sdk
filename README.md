@@ -79,81 +79,13 @@ dependencies {
    android:theme="@style/AppTheme">
 ```
 
-## CardView 原生影音廣告
+## 卡片型原生影音廣告
 ### Layout
 ---
 您可以直接套用範例專案中的 custom_video_ad_list_item.xml ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
-```java
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-   xmlns:android="http://schemas.android.com/apk/res/android"
-   android:id="@+id/custom_out_layout"
-   android:layout_width="match_parent"
-   android:layout_height="wrap_content">
-   <ImageView android:id="@+id/native_main_image"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="@null"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentTop="true"
-       android:layout_marginTop="10dp"
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
-       android:scaleType="fitXY"
-       android:adjustViewBounds="true" />
-   <com.core.adnsdk.VideoPlayer
-       android:id="@+id/native_video_layout"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
-       android:layout_marginBottom="10dp"
-       android:layout_below="@id/native_main_image"
-       android:layout_centerHorizontal="true" />
-   <RelativeLayout
-       android:id="@+id/native_video_title_block"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
-       android:layout_alignBottom="@id/native_video_layout"
-       android:background="#af000000" >
-       <ImageView
-           android:id="@+id/native_icon_image"
-           android:layout_width="40dp"
-           android:layout_height="40dp"
-           android:scaleType="centerCrop" />
-       <TextView
-           android:id="@+id/native_title"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:layout_centerVertical="true"
-           android:gravity="center"
-           android:singleLine="true"
-           android:textColor="#ffffff"
-           android:textSize="15dp"
-           android:layout_toRightOf="@id/native_icon_image" />
-   </RelativeLayout>
-   <TextView android:id="@+id/native_cta"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginRight="3dp"
-       android:layout_marginBottom="3dp"
-       android:gravity="center_horizontal"
-       android:layout_above="@id/native_video_title_block"
-       android:layout_alignRight="@id/native_video_layout" />
-   <ImageView android:id="@+id/native_loading_image"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_alignParentRight="true"
-       android:layout_alignParentTop="true"
-       android:scaleType="centerCrop"
-       android:src="@drawable/native_loading_image"/>
-</RelativeLayout>
-```
-  文字和圖片等素材使用標準的 TextView 和 ImageView 呈現即可，但**用來播放影音廣告的元件請務必使用 com.core.adnsdk.VideoPlayer**。
-
 <TODO - Layout example>
+文字和圖片等素材使用標準的 TextView 和 ImageView 呈現即可，但**用來播放影音廣告的元件請務必使用 com.core.adnsdk.VideoPlayer**。
+
 
 ### 初始化SDK
 ---
@@ -176,9 +108,9 @@ dependencies {
 
 ### 載入並且展示原生影片廣告
 ---
-1. 開始撰寫代碼之前,需要先引入以下的物件,完整的程式碼請參考 ExampleNative.java
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ExampleNative.java
 
-    ```java
+```java
 import com.core.adnsdk.AdCustom;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
@@ -186,7 +118,7 @@ import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
 ```
-2. 創建 CardViewBinder ，透過 CardViewBinder 指定廣告素材和 UI 元件的關係
+1. 創建 CardViewBinder ，透過 CardViewBinder 指定廣告素材和 UI 元件的關係
     * ```public final Builder loadingId(final int loadingId)```：綁定 Loading image 與 UI 元件
     * ```public final Builder titleId(final int titleId)```：綁定標題文字與 UI 元件
     * ```public final Builder subTitleId(final int subTitleId)```：綁定副標題文字與 UI 元件
@@ -200,22 +132,22 @@ import com.core.adnsdk.ErrorMessage;
     ```java
     // native video layout builder
     CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.card_ad_item)
-       .loadingId(R.id.native_loading_image)
-       .mainImageId(R.id.native_main_image)
-       .titleId(R.id.native_title)
-       .videoPlayerId(R.id.native_video_layout)
+       .loadingId(R.id.native_loading_image) 
+       .mainImageId(R.id.native_main_image) 
+       .titleId(R.id.native_title) 
+       .videoPlayerId(R.id.native_video_layout) 
        .iconImageId(R.id.native_icon_image)
-       .callToActionId(R.id.native_cta)
+       .callToActionId(R.id.native_cta) 
        .build();
     ```
     
-3. 創建 CardAdRenderer 物件，利用上一步的 CardViewBinder
+2. 創建 CardAdRenderer 物件，利用上一步的 CardViewBinder
     ```java
     // set layout builder to renderer
     CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
     ```
     
-4. 創建 AdCustom 物件 :
+3. 創建 AdCustom 物件 
     ```java
     AdCustom(Activity activity, String placeName, CardAdRenderer renderer, ViewGroup parent)
     ```
@@ -228,7 +160,7 @@ import com.core.adnsdk.ErrorMessage;
     ```java
     mNativeAd = new AdCustom(this, "placement(custom)", vRenderer, mainContainer);
     ```
-5. 設定並且實作 AdListener：
+4. 設定並且實作 AdListener：
 
     ```java
     public interface AdListener {
@@ -240,14 +172,18 @@ import com.core.adnsdk.ErrorMessage;
      boolean onAdWatched(); //影片播放完畢,要自動載入下一檔廣告請回傳true,否則回傳false
   }
     ```
-6. 設定測試模式。
+5. 設定測試模式
 
     當打開測試模式的時候，SDK 會接受到測試用的廣告。測試廣告並沒有分潤，因此**測試完成後 App 上線前請一定要關閉測試模式。(設成 false )**
     ```java
     mNativeAd.setTestMode(true)
     ```
 
-7. 在 LifeCycle 的函式中，呼叫對應的 AdCustom 的 LifeCycle 方法避免內存洩漏。
+6. 呼叫 loadAd 載入廣告
+    ```java
+    mNativeAd.loadAd();
+    ```
+7. 在 LifeCycle 的函式中，呼叫對應的 AdCustom 的 LifeCycle 方法避免內存洩漏
     ```java
     @Override
       protected void onResume() {
@@ -268,8 +204,64 @@ import com.core.adnsdk.ErrorMessage;
       }
     ```
     
-## ListView 原生影片廣告
+## ListView 型原生影片廣告
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ExampleNative.java
 
+```java
+import com.core.adnsdk.AdObject;
+import com.core.adnsdk.CardAdRenderer;
+import com.core.adnsdk.CardViewBinder;
+import com.core.adnsdk.ErrorMessage;
+import com.core.adnsdk.AdViewType;
+import com.core.adnsdk.NativeAdAdapter;
+import com.core.adnsdk.AdPoolListener;
+```
+
+1. 新增一個 CardViewBinder 物件，將 Layout 裡的 UI 元件 id 透過 CardViewBinder 與綁定廣告素材的關聯與規則
+    
+    範例：
+    ```java
+    CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.custom_video_ad_list_item)
+       .loadingId(R.id.native_loading_image)
+       .mainImageId(R.id.native_main_image)
+       .titleId(R.id.native_title)
+       .videoPlayerId(R.id.native_video_layout)
+       .iconImageId(R.id.native_icon_image)
+       .callToActionId(R.id.native_cta)
+       .build();
+    ```
+2. 建立一個CardAdRenderer，並且將定義好素材與排版關聯的 CardViewBinder 傳入
+
+    ```java
+      CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
+    ```
+3. 建立一個 NativeAdAdapter 物件
+
+    傳入 Context ，要插入原生廣告的 ListView 和 Adapter ，以及一個任意的字串。這個字串會在後台顯示作為廣告版位的 TAG；當在很多不同的版位插入廣告的時候，就可以利用版位的 TAG 觀察與分析各個版位的廣告收益。
+
+    ```java
+    public NativeAdAdapter(final Activity activity, final ListView listView, final Adapter originalAdapter, final String placement)
+    ```
+    * ```activity```：Activity context
+    * ```listView```：要插入原生廣告的 ListView
+    * ```originalAdapter```：要插入原生廣告的 adapter
+    * ```placement```：任意字串；此字串會傳送到後台，可利用此字串在後台查詢廣告數據與收益。
+    
+    範例：
+    ```java
+    mAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list)")
+    ```
+4. 設定與實 AdPoolListener， AdPoolListener 的事件會多帶一個 index 參數表示插入廣告的位置
+    ```java
+    public interface AdPoolListener {
+   void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
+   void onError(int index,ErrorMessage err); // SDK出現錯誤
+   void onAdClicked(int index,); //廣告被點擊
+   void onAdFinished(int index,); //廣告點擊完成跳轉後
+   void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
+   boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
+}
+    ```
 
 ## 串接影音插頁廣告(Interstitial)
 
