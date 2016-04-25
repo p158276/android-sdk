@@ -251,7 +251,8 @@ import com.core.adnsdk.AdPoolListener;
     ```java
     mAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list)")
     ```
-4. 設定與實 AdPoolListener， AdPoolListener 的事件會多帶一個 index 參數表示插入廣告的位置
+4. 設定與實作 AdPoolListener， AdPoolListener 的事件會多帶一個 index 參數表示插入廣告的位置
+ 
     ```java
     public interface AdPoolListener {
    void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
@@ -263,6 +264,76 @@ import com.core.adnsdk.AdPoolListener;
 }
     ```
 
-## 串接影音插頁廣告(Interstitial)
+## 影音插頁廣告(Interstitial)
 
+1. 在開始撰寫程式碼之前,請先在 AndroidManifest.xml 中宣告插頁廣告的 Actitivity 
+    * 直屏的 Activity
+  
+    ```java
+    <activity
+   android:name="com.core.adnsdk.InterstitialActivity"
+   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+   android:hardwareAccelerated="true">
+    </activity>
+    ```
+    * 轉橫屏全螢幕播放的 Activity:
+  
+    ```java
+    <activity
+   android:name="com.core.adnsdk.FullScreenVideoActivity"
+   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+   android:screenOrientation="landscape"
+   android:hardwareAccelerated="true">
+    </activity>
+    ```
+2. 創建adInterstitial物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
+ ```AdInterstitialType.INTERSTITIAL_VIDEO ```
+  
+  ```java
+    adInterstitial = new AdInterstitial(context,
+    "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
+    ```
+2. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
+ ```adInterstitial.setTestMode(true); ```
+3. 實作 AdListener()，各個 callback 的定義如下：
 
+  ```java
+public interface AdListener {
+   void onAdLoaded(AdObject adObject); // 廣告完成載入
+   void onError(ErrorMessage err); // SDK 出現錯誤
+   void onAdClicked(); //廣告被點擊
+   void onAdFinished(); //廣告點擊完成跳轉後
+   void onAdReleased(); //廣告完成卸載並且釋放所有資源
+   boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
+}
+    ```
+4. 載入廣告，載入完成後 SDK 會呼叫 onAdLoaded
+
+ ```adInterstitial.loadAd(); ```
+5. 確定廣告已經載入完成後(可用 onAdLoaded 追蹤)後，展示廣告
+
+ ```adInterstitial.showAd(); ```
+6. 處理插頁廣告的 Life Cycle，釋放資源
+  ```java
+  @Override
+  public void onResume() {
+     if (adInterstitial != null) {
+         adInterstitial.onResume();
+     }
+  }
+  
+  @Override
+  public void onPause() {
+     if (adInterstitial != null) {
+         adInterstitial.onPause();
+     }
+  }
+  
+  @Override
+  public void onDestroy() {
+     if (adInterstitial != null) {
+         adInterstitial.onDestroy();
+         adInterstitial = null;
+     }
+  }
+    ```
