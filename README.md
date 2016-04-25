@@ -1,15 +1,15 @@
 # Android-SDK
-- 概論
-- 導入SDK
-  - Android Studio
-  - Eclipse
-- 更新 AndroidManifest.xml
-- 卡片型原生影音廣告
-  - Layout
-  - 初始化SDK
-  - 載入並且展示原生影音廣告
-* ListView 型原生影音廣告
-* 影音插頁廣告(Interstitial)
+- [概論](https://github.com/weitingboy/android-sdk#概論)
+- [導入 SDK](https://github.com/weitingboy/android-sdk#導入sdk)
+  - [Android Studio](https://github.com/weitingboy/android-sdk#android-studio)
+  - [Eclipse](https://github.com/weitingboy/android-sdk#eclipse)
+- [更新 AndroidManifest.xml](https://github.com/weitingboy/android-sdk#更新-androidmanifestxml)
+- [卡片型原生影音廣告](https://github.com/weitingboy/android-sdk#卡片型原生影音廣告)
+  * [Layout](https://github.com/weitingboy/android-sdk#layout)
+  * [初始化 SDK](https://github.com/weitingboy/android-sdk#初始化sdk)
+  * [載入並且展示原生影音廣告](https://github.com/weitingboy/android-sdk#載入並且展示原生影片廣告)
+* [ListView 型原生影音廣告](https://github.com/weitingboy/android-sdk#listview-型原生影片廣告)
+* [影音插頁廣告(Interstitial)](https://github.com/weitingboy/android-sdk#影音插頁廣告interstitial)
 
 ## 概論
 原生廣告沒有固定的規格大小，需要透過應用程式開發者的巧思將廣告的素材重新設計與編排後融合到使用者介面之中。
@@ -21,7 +21,7 @@
 <TODO - Native Video Ads Pic Example>
 
 ## 導入SDK
-### Android Studio
+#### Android Studio
 ---
 1. 下載最新版 SDK
 2. 將 SDK 以新增 Module Dependency 的方式加入Gradle 
@@ -34,7 +34,7 @@ dependencies {
 }
 ```
 
-### Eclipse
+#### Eclipse
 ---
 **目前SDK是以Library Project的方式提供**
 
@@ -80,14 +80,14 @@ dependencies {
 ```
 
 ## 卡片型原生影音廣告
-### Layout
+#### Layout
 ---
 您可以直接套用範例專案中的 custom_video_ad_list_item.xml ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
 <TODO - Layout example>
 文字和圖片等素材使用標準的 TextView 和 ImageView 呈現即可，但**用來播放影音廣告的元件請務必使用 com.core.adnsdk.VideoPlayer**。
 
 
-### 初始化SDK
+#### 初始化SDK
 ---
 在 Application 的進入點,呼叫 ADN.initialize 方法並且傳入 Context 和 API KEY 進行 SDK 的初始化。**在初始化時一定要填入正確的 API KEY ，否則無法取得線上販售的廣告獲得分潤。**
 
@@ -106,7 +106,7 @@ dependencies {
     }
 ```
 
-### 載入並且展示原生影片廣告
+#### 載入並且展示原生影片廣告
 ---
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ExampleNative.java
 
