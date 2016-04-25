@@ -1,6 +1,6 @@
 # Android-SDK
 - [概論](https://github.com/weitingboy/android-sdk#概論)
-- [導入 SDK](https://github.com/weitingboy/android-sdk#導入 sdk)
+- [導入 SDK](https://github.com/weitingboy/android-sdk#導入-sdk)
   - [Android Studio](https://github.com/weitingboy/android-sdk#android-studio)
   - [Eclipse](https://github.com/weitingboy/android-sdk#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/weitingboy/android-sdk#更新-androidmanifestxml)
