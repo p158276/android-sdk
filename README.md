@@ -1,6 +1,6 @@
 # Android-SDK
 - [概論](https://github.com/weitingboy/android-sdk#概論)
-- [導入 SDK](https://github.com/weitingboy/android-sdk#導入sdk)
+- [導入 SDK](https://github.com/weitingboy/android-sdk#導入 sdk)
   - [Android Studio](https://github.com/weitingboy/android-sdk#android-studio)
   - [Eclipse](https://github.com/weitingboy/android-sdk#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/weitingboy/android-sdk#更新-androidmanifestxml)
@@ -20,7 +20,7 @@
 
 <TODO - Native Video Ads Pic Example>
 
-## 導入SDK
+## 導入 SDK
 #### Android Studio
 ---
 1. 下載最新版 SDK
@@ -41,7 +41,7 @@ dependencies {
 2. 將 SDK 的 JAR 檔拖至 ```libs``` 目錄下
 3. 加入 ```Google Play Service``` 的 ```library project```
 
-## 更新 ```AndroidManifest.xml```
+## 更新 AndroidManifest.xml
 1. 修改 ```AndroidManifest.xml``` 加入必要的權限
    
     ```java
@@ -209,7 +209,7 @@ import com.core.adnsdk.ErrorMessage;
       }
     ```
     
-## ```ListView``` 型原生影片廣告
+## ListView 型原生影片廣告
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleNative.java```
 
 ```java
