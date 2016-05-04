@@ -24,7 +24,7 @@
 #### Android Studio
 ---
 1. 下載最新版 SDK
-2. 將 SDK 以新增 ```Module Dependency``` 的方式加入 ```Gradle``` 
+2. 將 SDK 以新增 ```Module Dependency``` 的方式加入 ```Gradle```  <TODO -這部分可以再說清楚一點>
 3. 修改 ```build.gradle``` 引入 ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
 ```java
 dependencies {
@@ -123,7 +123,7 @@ import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
 ```
-1. 創建 ```CardViewBinder``` ，透過 ```CardViewBinder``` 指定廣告素材和 UI 元件的關係
+1. 創建 ```CardViewBinder``` ，透過 ```CardViewBinder``` 指定廣告素材和 UI 元件的關係 <TODO -上下交換順序，然後補充是在 onCreate 裡面加入>
     * ```public final Builder loadingId(final int loadingId)```：綁定 Loading image 與 UI 元件
     * ```public final Builder titleId(final int titleId)```：綁定標題文字與 UI 元件
     * ```public final Builder subTitleId(final int subTitleId)```：綁定副標題文字與 UI 元件
