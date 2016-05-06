@@ -1,15 +1,15 @@
 # Android-SDK
-- [概論](https://github.com/weitingboy/android-sdk#概論)
-- [導入 SDK](https://github.com/weitingboy/android-sdk#導入-sdk)
-  - [Android Studio](https://github.com/weitingboy/android-sdk#android-studio)
-  - [Eclipse](https://github.com/weitingboy/android-sdk#eclipse)
-- [更新 AndroidManifest.xml](https://github.com/weitingboy/android-sdk#更新-androidmanifestxml)
-- [卡片型原生影音廣告](https://github.com/weitingboy/android-sdk#卡片型原生影音廣告)
-  * [Layout](https://github.com/weitingboy/android-sdk#layout)
-  * [初始化 SDK](https://github.com/weitingboy/android-sdk#初始化sdk)
-  * [載入並且展示原生影音廣告](https://github.com/weitingboy/android-sdk#載入並且展示原生影片廣告)
-* [ListView 型原生影音廣告](https://github.com/weitingboy/android-sdk#listview-型原生影片廣告)
-* [影音插頁廣告(Interstitial)](https://github.com/weitingboy/android-sdk#影音插頁廣告interstitial)
+- [概論](https://github.com/applauseadn/android-sdk/blob/master/README.md#概論) 
+- [導入 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#導入-sdk)
+  - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
+  - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
+- [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md##更新-androidmanifestxml)
+- [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
+  * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
+  * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
+  * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
+* [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#listview-型原生影片廣告)
+* [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
 
 ## 概論
 原生廣告沒有固定的規格大小，需要透過應用程式開發者的巧思將廣告的素材重新設計與編排後融合到使用者介面之中。
