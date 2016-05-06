@@ -3,7 +3,7 @@
 - [導入 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#導入-sdk)
   - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
   - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
-- [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md##更新-androidmanifestxml)
+- [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md#更新-androidmanifestxml)
 - [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
   * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
   * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
