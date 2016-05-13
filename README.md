@@ -266,6 +266,7 @@ import com.core.adnsdk.AdPoolListener;
    void onAdFinished(int index,); //廣告點擊完成跳轉後
    void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
    boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
+   void onAdImpressed(); //廣告曝光
 }
     ```
 
@@ -310,6 +311,7 @@ public interface AdListener {
    void onAdFinished(); //廣告點擊完成跳轉後
    void onAdReleased(); //廣告完成卸載並且釋放所有資源
    boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
+   void onAdImpressed(); //廣告曝光
 }
     ```
 4. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
