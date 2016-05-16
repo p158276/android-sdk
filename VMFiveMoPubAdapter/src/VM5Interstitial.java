@@ -35,18 +35,31 @@ public class VM5Interstitial extends CustomEventInterstitial implements AdListen
         String apiKey = "";
         if (serverExtras.containsKey("apiKey")) {
             apiKey = serverExtras.get("apiKey");
+        } else {
+            Log.e(TAG, "User should specify apiKey in serverExtras");
+            mInterstitialListener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
-        ADN.initialize(context, apiKey);
 
         String placementName = "";
         if (serverExtras.containsKey("placement")) {
             placementName = serverExtras.get("placement");
+        } else {
+            Log.e(TAG, "User should specify placement in serverExtras");
+            mInterstitialListener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
 
         boolean isTestMode = true;
         if (serverExtras.containsKey("test")) {
             isTestMode = serverExtras.get("test").equals("1");
+        } else {
+            Log.e(TAG, "User should specify test in serverExtras");
+            mInterstitialListener.onInterstitialFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
+
+        ADN.initialize(context, apiKey);
         mAdInterstitial = new AdInterstitial(context, placementName, AdInterstitialType.INTERSTITIAL_VIDEO);
         mAdInterstitial.setTestMode(isTestMode);
         mAdInterstitial.setAdListener(this);

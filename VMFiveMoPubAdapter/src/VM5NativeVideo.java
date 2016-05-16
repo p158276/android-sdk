@@ -51,19 +51,31 @@ public class VM5NativeVideo extends MoPubCustomEventVideoNative implements AdLis
         String apiKey = "";
         if (serverExtras.containsKey("apiKey")) {
             apiKey = serverExtras.get("apiKey");
+        } else {
+            Log.e(TAG, "User should specify apiKey in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
-        ADN.initialize(activity, apiKey);
 
         String placementName = "";
         if (serverExtras.containsKey("placement")) {
             placementName = serverExtras.get("placement");
+        } else {
+            Log.e(TAG, "User should specify placement in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
 
         boolean isTestMode = true;
         if (serverExtras.containsKey("test")) {
             isTestMode = serverExtras.get("test").equals("1");
+        } else {
+            Log.e(TAG, "User should specify test in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
 
+        ADN.initialize(activity, apiKey);
         AdDelegator adDelegator = new AdDelegator(activity, placementName, AdViewType.BANNER_VIDEO);
         adDelegator.setTestMode(isTestMode);
         adDelegator.setAdListener(this);

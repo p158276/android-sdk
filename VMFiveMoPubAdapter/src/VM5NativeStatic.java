@@ -43,18 +43,31 @@ public class VM5NativeStatic extends CustomEventNative {
         String apiKey = "";
         if (serverExtras.containsKey("apiKey")) {
             apiKey = serverExtras.get("apiKey");
+        } else {
+            Log.e(TAG, "User should specify apiKey in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
-        ADN.initialize(activity, apiKey);
 
         String placementName = "";
         if (serverExtras.containsKey("placement")) {
             placementName = serverExtras.get("placement");
+        } else {
+            Log.e(TAG, "User should specify placement in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
 
         boolean isTestMode = true;
         if (serverExtras.containsKey("test")) {
             isTestMode = serverExtras.get("test").equals("1");
+        } else {
+            Log.e(TAG, "User should specify test in serverExtras");
+            customEventNativeListener.onNativeAdFailed(NativeErrorCode.NATIVE_ADAPTER_CONFIGURATION_ERROR);
+            return;
         }
+
+        ADN.initialize(activity, apiKey);
         mVM5StaticNativeAd = new VM5StaticNativeAd(activity,
                 new ImpressionTracker(activity),
                 new NativeClickHandler(activity),
