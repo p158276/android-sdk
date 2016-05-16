@@ -37,7 +37,7 @@ dependencies {
 #### Eclipse
 ---
 
-1. 下載最新版 SDK
+1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
 2. 將 SDK 的 JAR 檔拖至 ```libs``` 目錄下
 3. 加入 ```Google Play Service``` 的 ```library project```
 
