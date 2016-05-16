@@ -23,7 +23,7 @@
 ## 導入 SDK
 #### Android Studio
 ---
-1. 下載最新版 SDK(https://github.com/applauseadn/android-sdk/releases)
+1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
 2. 將 SDK 以新增 ```Module Dependency``` 的方式加入 ```Gradle```  <TODO -這部分可以再說清楚一點>
 3. 修改 ```build.gradle``` 引入 ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
 ```java
