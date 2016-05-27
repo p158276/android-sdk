@@ -12,19 +12,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.core.adnsdk.AdViewType;
 import com.core.adnsdk.AdObject;
 import com.core.adnsdk.AdPoolListener;
-import com.core.adnsdk.AdViewType;
 import com.core.adnsdk.ErrorMessage;
-import com.core.adnsdk.RecyclerAdapter;
 import com.core.adnsdk.RecyclerCardAdRenderer;
+import com.core.adnsdk.RecyclerAdapter;
 import com.core.adnsdk.RecyclerCardViewBinder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExampleRecyclerView extends Activity {
-    private static final String TAG = "ExampleListView";
+    private static final String TAG = "ExampleRecyclerView";
 
     private RecyclerAdapter mRecyclerAdapter;
 
@@ -105,8 +105,8 @@ public class ExampleRecyclerView extends Activity {
             }
 
             @Override
-            public void onAdImpressed() {
-
+            public void onAdImpressed(int index) {
+                Log.d(TAG, "onAdImpressed.");
             }
         });
         recyclerView.setAdapter(mRecyclerAdapter);

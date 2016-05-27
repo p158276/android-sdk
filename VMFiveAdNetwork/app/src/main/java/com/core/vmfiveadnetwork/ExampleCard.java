@@ -6,26 +6,29 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.core.adnsdk.AdCustom;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
+import com.core.adnsdk.AdView;
+import com.core.adnsdk.AdViewType;
+import com.core.adnsdk.BannerAdRenderer;
+import com.core.adnsdk.BannerViewBinder;
 import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
 
-/**
- * Created by Shawn on 9/7/15.
- */
-public class ExampleNative extends FragmentActivity {
-    private static final String TAG = "ExampleNative";
+public class ExampleCard extends FragmentActivity {
+    private static final String TAG = "ExampleCard";
 
-    private AdCustom mNativeAd;
+    private AdView dynamicAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_example);
 
+        ViewGroup adLayout = (ViewGroup) findViewById(R.id.example_adlayout);
+
+        final AdViewType adViewType = AdViewType.CARD_VIDEO;
         // native video layout builder
         CardViewBinder binder = new CardViewBinder.Builder(R.layout.card_ad_item)
                 .loadingId(R.id.native_loading_image)
@@ -39,17 +42,15 @@ public class ExampleNative extends FragmentActivity {
                 .build();
         // set layout builder to renderer
         CardAdRenderer renderer = new CardAdRenderer(binder);
-
-        final ViewGroup mainContainer = (ViewGroup) findViewById(R.id.example_adlayout);
-        mNativeAd = new AdCustom(this, "placement(custom)", renderer, mainContainer);
+        dynamicAdView = new AdView(this, "placement(card_video)", adViewType, renderer, adLayout);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        mNativeAd.setAdListener(new AdListener() {
+        dynamicAdView.setAdListener(new AdListener() {
             @Override
-            public void onAdLoaded(AdObject ad) {
-                Log.d(TAG, "onAdLoaded(" + ad + ")");
+            public void onAdLoaded(AdObject obj) {
+                Log.d(TAG, "onAdLoaded(" + obj + ")");
             }
 
             @Override
@@ -78,43 +79,41 @@ public class ExampleNative extends FragmentActivity {
             @Override
             public boolean onAdWatched() {
                 Log.d(TAG, "onAdWatched.");
-                return true;
+                return false;
             }
 
             @Override
             public void onAdImpressed() {
-
+                Log.d(TAG, "onAdImpressed.");
             }
         });
-        mNativeAd.loadAd();
-        mNativeAd.setTestMode(true);
-    }
-
-    @Override
-    protected void onResume() {
-        mNativeAd.onResume();
-        super.onResume();
+        //adLayout.addView(dynamicAdView);
+        dynamicAdView.setTestMode(true);
+        dynamicAdView.loadAd();
     }
 
     @Override
     protected void onPause() {
-        mNativeAd.onPause();
+        if (dynamicAdView != null) {
+            dynamicAdView.onPause();
+        }
         super.onPause();
     }
 
     @Override
+    protected void onResume() {
+        if (dynamicAdView != null) {
+            dynamicAdView.onResume();
+        }
+        super.onResume();
+    }
+
+    @Override
     protected void onDestroy() {
-        mNativeAd.onDestroy();
+        if (dynamicAdView != null) {
+            dynamicAdView.onDestroy();
+            dynamicAdView = null;
+        }
         super.onDestroy();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 }

@@ -1,9 +1,5 @@
 package com.core.vmfiveadnetwork;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-
 import com.core.adnsdk.AdInterstitial;
 import com.core.adnsdk.AdInterstitialType;
 import com.core.adnsdk.AdListener;
@@ -13,6 +9,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitial;
 import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 
 
 /**

@@ -39,7 +39,10 @@
             android:name="com.core.vmfiveadnetwork.ExampleBanner"
             android:label="@string/app_name"/>
         <activity
-            android:name="com.core.vmfiveadnetwork.ExampleNative"
+            android:name="com.core.vmfiveadnetwork.ExampleCard"
+            android:label="@string/app_name"/>
+        <activity
+            android:name="com.core.vmfiveadnetwork.ExampleCustom"
             android:label="@string/app_name"/>
         <activity
             android:name="com.core.vmfiveadnetwork.ExampleMediation"

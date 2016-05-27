@@ -7,14 +7,14 @@ import android.util.Log;
 
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
-import com.core.adnsdk.AdView;
-import com.core.adnsdk.AdViewType;
 import com.core.adnsdk.ErrorMessage;
-import com.core.adnsdk.TimeUnit;
+import com.core.adnsdk.AdViewType;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.mediation.MediationAdRequest;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBanner;
 import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListener;
+import com.core.adnsdk.TimeUnit;
+import com.core.adnsdk.AdView;
 
 /**
  * Created by yangmingyi on 15/10/16.
@@ -28,7 +28,7 @@ public class AdMobBanner implements CustomEventBanner {
     public void requestBannerAd(final Context context, final CustomEventBannerListener customEventBannerListener,
                                 String serverParameter, com.google.android.gms.ads.AdSize adSize, MediationAdRequest mediationAdRequest, Bundle bundle) {
 
-        AdViewType adViewType = AdViewType.BANNER;
+        AdViewType adViewType = AdViewType.BANNER_VIDEO;
 
         if (adView == null) {
             adView = new AdView((Activity)context, "placement(banner_admob)", adViewType);

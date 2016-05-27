@@ -100,7 +100,7 @@ public class CustomRecyclerCardAdRenderer implements RecyclerAdRenderer {
         TextView callToAction = holder.callToActionTextView;
         VideoPlayer videoLayout = holder.videoPlayer;
 
-        interactView.add(holder.mLayoutView);
+        interactView.add(holder.layoutView);
         if (mainImage != null) {
             if (mainImage instanceof GifView) {
                 if (adObject.getAdImageResource() != null) {

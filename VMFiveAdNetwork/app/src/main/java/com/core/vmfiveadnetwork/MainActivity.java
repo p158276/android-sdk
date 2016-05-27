@@ -16,17 +16,21 @@
 
 package com.core.vmfiveadnetwork;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,8 +46,14 @@ import com.core.adnsdk.AdInterstitial;
 import com.core.adnsdk.AdInterstitialType;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
+
 import com.core.adnsdk.ErrorMessage;
 import com.core.adnsdk.SDKController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
     private static final String TAG = "MainActivity";
@@ -115,6 +125,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                                 .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                                 .setTabListener(this));
         }
+
+        // check permissions for M, if some permission denied, it would shut down activity
+        checkRequiredPermissions();
     }
 
     @Override
@@ -201,9 +214,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 case 0:
                     return Banner.getInstance();
                 case 1:
-                    return MainActivity.Interstitial.getInstance();
+                    return Card.getInstance();
                 case 2:
+                    return Interstitial.getInstance();
+                case 3:
                     return Native.getInstance();
+                case 4:
+                    return Other.getInstance();
 
                 default:
                     // The other sections of the app are dummy placeholders.
@@ -217,7 +234,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public int getCount() {
-            return 3;
+            return 5;
         }
 
         @Override
@@ -226,9 +243,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 case 0:
                     return mContext.getString(R.string.banner_title);
                 case 1:
-                    return mContext.getString(R.string.interstitial_title);
+                    return mContext.getString(R.string.card_title);
                 case 2:
+                    return mContext.getString(R.string.interstitial_title);
+                case 3:
                     return mContext.getString(R.string.native_title);
+                case 4:
+                    return mContext.getString(R.string.other_title);
                 default:
                     return "Section " + (position + 1);
             }
@@ -255,30 +276,47 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(getActivity(), ExampleBanner.class);
-                            intent.putExtra("type", "video");
                             startActivity(intent);
                         }
                     });
+
+            return rootView;
+        }
+    }
+
+
+    /**
+     * A fragment that launches other parts of the demo application.
+     */
+    public static class Card extends Fragment {
+
+        public static Fragment getInstance() {
+            return new Card();
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_card, container, false);
 
             rootView.findViewById(R.id.card_video)
                     .setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), ExampleBanner.class);
-                            intent.putExtra("type", "card_video");
+                            Intent intent = new Intent(getActivity(), ExampleCard.class);
                             startActivity(intent);
                         }
                     });
 
-            rootView.findViewById(R.id.admob_mediation)
+            rootView.findViewById(R.id.custom_video)
                     .setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), ExampleMediation.class);
-                            intent.putExtra("type", "AdMob");
+                            Intent intent = new Intent(getActivity(), ExampleCustom.class);
                             startActivity(intent);
                         }
                     });
+
             return rootView;
         }
     }
@@ -292,16 +330,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             return new Interstitial();
         }
 
-        private AdInterstitial adVideoView;
+        private AdInterstitial mAdInterstitial;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            adVideoView = new AdInterstitial(
+            mAdInterstitial = new AdInterstitial(
                     getActivity(),
                     "placement(interstitial_video)",
                     AdInterstitialType.INTERSTITIAL_VIDEO);
-            adVideoView.setTestMode(true);
+            mAdInterstitial.setTestMode(true);
         }
 
         @Override
@@ -317,11 +355,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                              * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
                              * Therefore, users can focus on specific events they care about.
                              */
-                            adVideoView.setAdListener(new AdListener() {
+                            mAdInterstitial.setAdListener(new AdListener() {
                                 @Override
                                 public void onAdLoaded(AdObject obj) {
                                     Log.d(TAG, "onAdLoaded(" + obj + ")");
-                                    adVideoView.showAd();
+                                    mAdInterstitial.showAd();
                                 }
 
                                 @Override
@@ -353,10 +391,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
                                 @Override
                                 public void onAdImpressed() {
-
+                                    Log.d(TAG, "onAdImpressed.");
                                 }
                             });
-                            adVideoView.loadAd();
+                            mAdInterstitial.loadAd();
                         }
                     });
 
@@ -374,25 +412,25 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public void onResume() {
-            if (adVideoView != null) {
-                adVideoView.onResume();
+            if (mAdInterstitial != null) {
+                mAdInterstitial.onResume();
             }
             super.onResume();
         }
 
         @Override
         public void onPause() {
-            if (adVideoView != null) {
-                adVideoView.onPause();
+            if (mAdInterstitial != null) {
+                mAdInterstitial.onPause();
             }
             super.onPause();
         }
 
         @Override
         public void onDestroy() {
-            if (adVideoView != null) {
-                adVideoView.onDestroy();
-                adVideoView = null;
+            if (mAdInterstitial != null) {
+                mAdInterstitial.onDestroy();
+                mAdInterstitial = null;
             }
             super.onDestroy();
         }
@@ -412,15 +450,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_native, container, false);
-
-            rootView.findViewById(R.id.native_custom)
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), ExampleNative.class);
-                            startActivity(intent);
-                        }
-                    });
 
             rootView.findViewById(R.id.native_listview)
                     .setOnClickListener(new View.OnClickListener() {
@@ -469,5 +498,149 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+    }
+
+    /**
+     * A fragment that launches other parts of the demo application.
+     */
+    public static class Other extends Fragment {
+
+        public static Fragment getInstance() {
+            return new Other();
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_other, container, false);
+
+            rootView.findViewById(R.id.admob_mediation)
+                    .setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ExampleMediation.class);
+                            intent.putExtra("type", "AdMob");
+                            startActivity(intent);
+                        }
+                    });
+
+            return rootView;
+        }
+    }
+
+    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+
+    private void checkRequiredPermissions() {
+        List<String> permissionsNeeded = new ArrayList<>();
+
+        final List<String> permissionsList = new ArrayList<>();
+        if (!addPermission(permissionsList, Manifest.permission.READ_PHONE_STATE)) {
+            permissionsNeeded.add("Read Phone State");
+        }
+        if (!addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            permissionsNeeded.add("GPS(Fine Location)");
+        }
+        if (!addPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            permissionsNeeded.add("GPS(Coarse Location)");
+        }
+        if (!addPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            permissionsNeeded.add("Read External Storage");
+        }
+        if (!addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            permissionsNeeded.add("Write External Storage");
+        }
+
+        if (permissionsList.size() > 0) {
+            if (permissionsNeeded.size() > 0) {
+                // Need Rationale
+                String message = "You need to grant access to " + permissionsNeeded.get(0);
+                for (int i = 1; i < permissionsNeeded.size(); i++) {
+                    message = message + ", " + permissionsNeeded.get(i);
+                }
+                showMessageOKCancel(message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(MainActivity.this, permissionsList.toArray(new String[permissionsList.size()]),
+                                REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                    }
+                });
+                return;
+            }
+            ActivityCompat.requestPermissions(MainActivity.this, permissionsList.toArray(new String[permissionsList.size()]), REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+            return;
+        }
+
+        okayed();
+    }
+
+    private boolean addPermission(List<String> permissionsList, String permission) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(permission);
+            // Check for Rationale Option
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            // https://inthecheesefactory.com/blog/things-you-need-to-know-about-android-m-permission-developer-edition/en
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
+                Map<String, Integer> perms = new HashMap<>();
+                // Initial
+                perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.ACCESS_COARSE_LOCATION, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                // Fill with results
+                for (int i = 0; i < permissions.length; i++) {
+                    perms.put(permissions[i], grantResults[i]);
+                }
+                // Check for ACCESS_FINE_LOCATION
+                if (perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    // All Permissions Granted
+                    okayed();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(MainActivity.this, "Some Permission is Denied", Toast.LENGTH_SHORT)
+                            .show();
+                    // Some Permissions Denied
+                    failed();
+                }
+            }
+            break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(MainActivity.this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    private void okayed() {
+
+    }
+
+    private void failed() {
+        finish();
     }
 }

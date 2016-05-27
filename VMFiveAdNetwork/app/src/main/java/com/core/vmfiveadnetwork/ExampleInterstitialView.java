@@ -16,7 +16,7 @@ import com.core.adnsdk.AdInterstitialType;
 import com.core.adnsdk.AdInterstitialView;
 
 public class ExampleInterstitialView extends FragmentActivity {
-    private static final String TAG = "ExampleBanner";
+    private static final String TAG = "ExampleInterstitialView";
 
     private VerticalViewPager mViewPager;
     private MyPagerAdapter mPagerAdapter;

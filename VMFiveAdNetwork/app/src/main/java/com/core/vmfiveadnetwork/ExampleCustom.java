@@ -6,47 +6,50 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.core.adnsdk.AdCustom;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
-import com.core.adnsdk.BannerAdRenderer;
 import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
-import com.core.adnsdk.AdViewType;
-import com.core.adnsdk.BannerViewBinder;
-import com.core.adnsdk.AdView;
 
-public class ExampleBanner extends FragmentActivity {
-    private static final String TAG = "ExampleBanner";
+/**
+ * Created by Shawn on 9/7/15.
+ */
+public class ExampleCustom extends FragmentActivity {
+    private static final String TAG = "ExampleCustom";
 
-    private AdView dynamicAdView;
+    private AdCustom mNativeAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_example);
 
-        ViewGroup adLayout = (ViewGroup) findViewById(R.id.example_adlayout);
+        // native video layout builder
+        CardViewBinder binder = new CardViewBinder.Builder(R.layout.card_ad_item)
+                .loadingId(R.id.native_loading_image)
+                .mainImageId(R.id.native_main_image)
+                .titleId(R.id.native_title)
+                .subTitleId(R.id.native_subtitle)
+                .videoPlayerId(R.id.native_video_layout)
+                .iconImageId(R.id.native_icon_image)
+                .callToActionId(R.id.native_cta)
+                .countDownId(R.id.native_count_down)
+                .build();
+        // set layout builder to renderer
+        CardAdRenderer renderer = new CardAdRenderer(binder);
 
-        final AdViewType adViewType = AdViewType.BANNER_VIDEO;
-            // native video layout builder
-            BannerViewBinder binder = new BannerViewBinder.Builder(R.layout.banner_ad_item)
-                    .loadingId(R.id.native_loading_image)
-                    .mainImageId(R.id.native_video_background_image)
-                    .videoPlayerId(R.id.native_video_player_layout)
-                    .build();
-
-            // set layout builder to renderer
-            BannerAdRenderer renderer = new BannerAdRenderer(binder);
-            dynamicAdView = new AdView(this, "placement(banner_video)", adViewType, renderer, adLayout);
+        final ViewGroup mainContainer = (ViewGroup) findViewById(R.id.example_adlayout);
+        mNativeAd = new AdCustom(this, "placement(custom)", renderer, mainContainer);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        dynamicAdView.setAdListener(new AdListener() {
+        mNativeAd.setAdListener(new AdListener() {
             @Override
-            public void onAdLoaded(AdObject obj) {
-                Log.d(TAG, "onAdLoaded(" + obj + ")");
+            public void onAdLoaded(AdObject ad) {
+                Log.d(TAG, "onAdLoaded(" + ad + ")");
             }
 
             @Override
@@ -75,7 +78,7 @@ public class ExampleBanner extends FragmentActivity {
             @Override
             public boolean onAdWatched() {
                 Log.d(TAG, "onAdWatched.");
-                return false;
+                return true;
             }
 
             @Override
@@ -83,33 +86,35 @@ public class ExampleBanner extends FragmentActivity {
                 Log.d(TAG, "onAdImpressed.");
             }
         });
-        //adLayout.addView(dynamicAdView);
-        dynamicAdView.setTestMode(true);
-        dynamicAdView.loadAd();
-    }
-
-    @Override
-    protected void onPause() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onPause();
-        }
-        super.onPause();
+        mNativeAd.setTestMode(true);
+        mNativeAd.loadAd();
     }
 
     @Override
     protected void onResume() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onResume();
-        }
+        mNativeAd.onResume();
         super.onResume();
     }
 
     @Override
+    protected void onPause() {
+        mNativeAd.onPause();
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onDestroy();
-            dynamicAdView = null;
-        }
+        mNativeAd.onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

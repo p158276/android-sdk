@@ -93,7 +93,7 @@ public class CustomBannerAdRenderer implements AdRenderer {
         ImageView backgroundImage = holder.mainImageView;
         VideoPlayer videoLayout = holder.videoPlayer;
 
-        interactView.add(holder.mLayoutView);
+        interactView.add(holder.layoutView);
         if (backgroundImage != null) {
             if (backgroundImage instanceof GifView) {
                 if (adObject.getAdImageResource() != null) {

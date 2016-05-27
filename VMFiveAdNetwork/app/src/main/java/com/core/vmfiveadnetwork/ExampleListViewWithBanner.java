@@ -11,15 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.core.adnsdk.AdListener;
-import com.core.adnsdk.AdObject;
-import com.core.adnsdk.AdPoolListener;
-import com.core.adnsdk.AdView;
 import com.core.adnsdk.AdViewType;
+import com.core.adnsdk.AdObject;
 import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
+import com.core.adnsdk.AdListener;
+import com.core.adnsdk.AdView;
 import com.core.adnsdk.NativeAdAdapter;
+import com.core.adnsdk.AdPoolListener;
 
 public class ExampleListViewWithBanner extends Activity {
     private static final String TAG = "ExampleListViewWithBanner";
@@ -103,8 +103,8 @@ public class ExampleListViewWithBanner extends Activity {
             }
 
             @Override
-            public void onAdImpressed() {
-
+            public void onAdImpressed(int index) {
+                Log.d(TAG, "onAdImpressed.");
             }
         });
         // (Optional) sdk already set listener to ListView, if user want to set listener of ListView,
@@ -176,7 +176,7 @@ public class ExampleListViewWithBanner extends Activity {
 
             @Override
             public void onAdImpressed() {
-
+                Log.d(TAG, "onAdImpressed.");
             }
         });
 
