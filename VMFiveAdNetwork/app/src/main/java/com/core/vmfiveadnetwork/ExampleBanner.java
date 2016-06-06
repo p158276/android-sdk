@@ -29,16 +29,16 @@ public class ExampleBanner extends FragmentActivity {
         ViewGroup adLayout = (ViewGroup) findViewById(R.id.example_adlayout);
 
         final AdViewType adViewType = AdViewType.BANNER_VIDEO;
-            // native video layout builder
-            BannerViewBinder binder = new BannerViewBinder.Builder(R.layout.banner_ad_item)
-                    .loadingId(R.id.native_loading_image)
-                    .mainImageId(R.id.native_video_background_image)
-                    .videoPlayerId(R.id.native_video_player_layout)
-                    .build();
+        // native video layout builder
+        BannerViewBinder binder = new BannerViewBinder.Builder(R.layout.banner_ad_item)
+                .loadingId(R.id.native_loading_image)
+                .mainImageId(R.id.native_video_background_image)
+                .videoPlayerId(R.id.native_video_player_layout)
+                .build();
 
-            // set layout builder to renderer
-            BannerAdRenderer renderer = new BannerAdRenderer(binder);
-            dynamicAdView = new AdView(this, "placement(banner_video)", adViewType, renderer, adLayout);
+        // set layout builder to renderer
+        BannerAdRenderer renderer = new BannerAdRenderer(binder);
+        dynamicAdView = new AdView(this, "placement(banner_video)", adViewType, renderer, adLayout);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
