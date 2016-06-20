@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.vmfive</groupId>
+  <artifactId>VMFiveADNSDK</artifactId>
+  <versioning>
+    <release>ADNSDK</release>
+    <versions>
+      <version>ADNSDK</version>
+    </versions>
+    <lastUpdated>20160620095904</lastUpdated>
+  </versioning>
+</metadata>
