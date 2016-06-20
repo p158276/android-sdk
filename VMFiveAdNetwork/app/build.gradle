@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        maven {
+            url 'https://github.com/applauseadn/android-sdk/raw/master/VMFiveADNSDK/'
+        }
+    }
 }
 
 dependencies {
@@ -26,5 +31,5 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.google.android.gms:play-services-ads:8.3.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile project(':adnsdk-release')
+    compile 'com.vmfive:VMFiveADNSDK:+:release@aar'
 }

@@ -1,1 +1,1 @@
-include ':app', ':adnsdk-release'
+include ':app'
