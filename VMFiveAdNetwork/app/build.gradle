@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.google.android.gms:play-services-ads:8.3.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.vmfive:VMFiveADNSDK:+:release@aar'
+    debugCompile 'com.vmfive:VMFiveADNSDK:+:debug@aar'
+    releaseCompile 'com.vmfive:VMFiveADNSDK:+:release@aar'
 }
