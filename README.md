@@ -231,19 +231,26 @@ import com.core.adnsdk.ErrorMessage;
     ```java
     @Override
     protected void onResume() {
-        mNativeAd.onResume();
+        if (mNativeAd != null) {
+            mNativeAd.onResume();
+        }
         super.onResume();
     }
       
     @Override
     protected void onPause() {
-        mNativeAd.onPause();
+        if (mNativeAd != null) {
+            mNativeAd.onPause();
+        }
         super.onPause();
     }
       
     @Override
     protected void onDestroy() {
-        mNativeAd.onDestroy();
+        if (mNativeAd != null) {
+            mNativeAd.onDestroy();
+            mNativeAd = null;
+        }
         super.onDestroy();
     }
     ```
