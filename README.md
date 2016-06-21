@@ -206,7 +206,7 @@ import com.core.adnsdk.ErrorMessage;
     
     範例：
     ```java
-    mNativeAd = new AdView(this, "placement(custom)", renderer, mainContainer);
+    mNativeAd = new AdView(this, "placement(card)", renderer, mainContainer);
     ```
 4. 設定並且實作 ```AdListener```：
 
@@ -406,7 +406,7 @@ import com.core.adnsdk.AdPoolListener;
     ```AdInterstitialType.INTERSTITIAL_VIDEO ```
       
     ```java
-    adInterstitial = new AdInterstitial(context, "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
+    adInterstitial = new AdInterstitial(context, "placement(interstitial)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
     ```
 
 3. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
