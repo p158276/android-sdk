@@ -45,39 +45,39 @@ dependencies {
 
 ## 更新 AndroidManifest.xml
 1. 修改 ```AndroidManifest.xml``` 加入必要的權限
-   
-```java
-//Required permissions
-<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-```
+    ```java
+    //Required permissions
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    ```
+
 2. 加入 ```Google GMS Activity``` 和 ```Meta-data```
-    
-```java
-<activity
-    android:name="com.google.android.gms.ads.AdActivity"
-    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-    android:hardwareAccelerated="true"/>
-<meta-data
-    android:name="com.google.android.gms.version"
-    android:value="@integer/google_play_services_version"/>
-```
+    ```java
+    <activity
+        android:name="com.google.android.gms.ads.AdActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:hardwareAccelerated="true"/>
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version"/>
+    ```
+
 3. 指定 ```Application``` 入口。如以下的例子：我們指定 ```MyApplication.java``` 作為我們 ```application``` 開始執行的入口
-```java
-<application
-    android:name=".MyApplication"
-    android:allowBackup="true"
-    android:hardwareAccelerated="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:theme="@style/AppTheme">
-```
+    ```java
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+    ```
 
 ## 卡片型原生影音廣告
 #### Layout
@@ -167,7 +167,6 @@ import com.core.adnsdk.ErrorMessage;
     mNativeAd = new AdCustom(this, "placement(custom)", vRenderer, mainContainer);
     ```
 4. 設定並且實作 ```AdListener```：
-
     ```java
     public interface AdListener {
         void onAdLoaded(AdObject adObject); // 廣告完成載入
@@ -179,7 +178,6 @@ import com.core.adnsdk.ErrorMessage;
     }
     ```
 5. 設定測試模式
-
     當打開測試模式的時候，SDK 會接受到測試用的廣告。測試廣告並沒有分潤，因此**測試完成後 App 上線前請一定要關閉測試模式。(設成 false )**
     ```java
     mNativeAd.setTestMode(true)
@@ -224,7 +222,6 @@ import com.core.adnsdk.AdPoolListener;
 ```
 
 1. 新增一個 ```CardViewBinder``` 物件，將 ```Layout``` 裡的 UI 元件 id 透過 ```CardViewBinder``` 與綁定廣告素材的關聯與規則
-    
     範例：
     ```java
     CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.custom_video_ad_list_item)
@@ -237,12 +234,11 @@ import com.core.adnsdk.AdPoolListener;
         .build();
     ```
 2. 建立一個 ```CardAdRenderer```，並且將定義好素材與排版關聯的 ```CardViewBinder``` 傳入
-
     ```java
     CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
     ```
+    
 3. 建立一個 ```NativeAdAdapter``` 物件
-
     傳入 ```Context``` ，要插入原生廣告的 ```ListView``` 和 ```Adapter``` ，以及一個任意的字串。這個字串會在後台顯示作為廣告版位的 TAG；當在很多不同的版位插入廣告的時候，就可以利用版位的 TAG 觀察與分析各個版位的廣告收益。
 
     ```java
@@ -258,18 +254,17 @@ import com.core.adnsdk.AdPoolListener;
     mAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list)")
     ```
 4. 設定與實作 ```AdPoolListener```， ```AdPoolListener``` 的事件會多帶一個 ```index``` 參數表示插入廣告的位置
- 
-```java
-public interface AdPoolListener {
-    void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
-    void onError(int index,ErrorMessage err); // SDK出現錯誤
-    void onAdClicked(int index,); //廣告被點擊
-    void onAdFinished(int index,); //廣告點擊完成跳轉後
-    void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
-    boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
-    void onAdImpressed(); //廣告曝光
-}
-```
+    ```java
+    public interface AdPoolListener {
+        void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
+        void onError(int index,ErrorMessage err); // SDK出現錯誤
+        void onAdClicked(int index,); //廣告被點擊
+        void onAdFinished(int index,); //廣告點擊完成跳轉後
+        void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
+        boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
+        void onAdImpressed(); //廣告曝光
+    }
+    ```
 
 ## 影音插頁廣告(Interstitial)
 
@@ -294,80 +289,77 @@ public interface AdPoolListener {
     </activity>
     ```
 2. 創建 ```adInterstitial``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
-```AdInterstitialType.INTERSTITIAL_VIDEO ```
-  
-```java
-adInterstitial = new AdInterstitial(context, "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
-```
-2. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
- ```adInterstitial.setTestMode(true); ```
-3. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
-
-```java
-public interface AdListener {
-    void onAdLoaded(AdObject adObject); // 廣告完成載入
-    void onError(ErrorMessage err); // SDK 出現錯誤
-    void onAdClicked(); //廣告被點擊
-    void onAdFinished(); //廣告點擊完成跳轉後
-    void onAdReleased(); //廣告完成卸載並且釋放所有資源
-    boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
-    void onAdImpressed(); //廣告曝光
-}
-```
-4. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
-
-```adInterstitial.loadAd(); ```
-5. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
-
-```adInterstitial.showAd(); ```
-6. 處理插頁廣告的 Life Cycle，釋放資源
-```java
-@Override
-public void onResume() {
-    if (adInterstitial != null) {
-        adInterstitial.onResume();
+    ```AdInterstitialType.INTERSTITIAL_VIDEO ```
+      
+    ```java
+    adInterstitial = new AdInterstitial(context, "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
+    ```
+3. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
+     ```adInterstitial.setTestMode(true); ```
+4. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
+    ```java
+    public interface AdListener {
+        void onAdLoaded(AdObject adObject); // 廣告完成載入
+        void onError(ErrorMessage err); // SDK 出現錯誤
+        void onAdClicked(); //廣告被點擊
+        void onAdFinished(); //廣告點擊完成跳轉後
+        void onAdReleased(); //廣告完成卸載並且釋放所有資源
+        boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
+        void onAdImpressed(); //廣告曝光
     }
-}
-
-@Override
-public void onPause() {
-    if (adInterstitial != null) {
-        adInterstitial.onPause();
+    ```
+5. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
+    ```adInterstitial.loadAd(); ```
+6. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
+    ```adInterstitial.showAd(); ```
+7. 處理插頁廣告的 Life Cycle，釋放資源
+    ```java
+    @Override
+    public void onResume() {
+        if (adInterstitial != null) {
+            adInterstitial.onResume();
+        }
     }
-}
-
-@Override
-public void onDestroy() {
-    if (adInterstitial != null) {
-        adInterstitial.onDestroy();
-        adInterstitial = null;
+    
+    @Override
+    public void onPause() {
+        if (adInterstitial != null) {
+            adInterstitial.onPause();
+        }
     }
-}
-```
+    
+    @Override
+    public void onDestroy() {
+        if (adInterstitial != null) {
+            adInterstitial.onDestroy();
+            adInterstitial = null;
+        }
+    }
+    ```
 
 ## 問題排解
 1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
-``` java
-/**
- * 請確認在 AndroidManifest.xml, 該版位所對應的 Activity/Application context 是否有啟用 hardwareAccelerated
-*/
-android:hardwareAccelerated="true"
-```
-
+    ``` java
+    /**
+     * 請確認在 AndroidManifest.xml, 該版位所對應的 Activity/Application context 是否有啟用 hardwareAccelerated
+    */
+    android:hardwareAccelerated="true"
+    ```
+    
 2. 廣告無法顯示素材的圖檔, 或影音廣告的影片, 無顯示CoverImage, 播放影片時也是黑屏
-``` java
-/**
- * 請確認在 AndroidManifest.xml, 是否有增加 read/write storage permissions
-*/
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-```
-若開發者的 Application 為 Android M(23) 版本以上, 需要增加 request permission dialog, 可參考
-[VMFiveAdNetwork Demo App 的實現](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
-``` java
-// check permissions for M, if some permission denied, it would shut down activity
-checkRequiredPermissions();
-```
-若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
-
+    ``` java
+    /**
+     * 請確認在 AndroidManifest.xml, 是否有增加 read/write storage permissions
+    */
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    ```
+    若開發者的 Application 為 Android M(23) 版本以上, 需要增加 request permission dialog, 可參考
+    [VMFiveAdNetwork Demo App 的實現](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
+    ``` java
+    // check permissions for M, if some permission denied, it would shut down activity
+    checkRequiredPermissions();
+    ```
+    若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
+    
 3. 
