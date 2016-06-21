@@ -265,6 +265,16 @@ import com.core.adnsdk.ErrorMessage;
     }
     ```
     
+8. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
+
+  ```
+  <activity
+      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+      android:hardwareAccelerated="true">
+  </activity>
+  ```
+    
 ## ListView 型原生影片廣告
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleListView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleListView.java)
 
@@ -357,6 +367,16 @@ import com.core.adnsdk.AdPoolListener;
         super.onDestroy();
     }
     ```
+
+6. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
+
+  ```
+  <activity
+      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+      android:hardwareAccelerated="true">
+  </activity>
+  ```
 
 ## 影音插頁廣告(Interstitial)
 完整的程式碼請參考 [```MainActivity.java Interstitial fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
