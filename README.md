@@ -20,7 +20,10 @@
 
 除此之外在原本的橫幅和插頁廣告版位外，可以在更多版位擺放廣告 **創造更多收入來源。**
 
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Banner.png?raw=true" alt="Video_Banner" width="216" height="384">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Interstitial.png?raw=true" alt="Video_Interstitial" width="216" height="384">
 <img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Native.png?raw=true" alt="Video_Native" width="216" height="384">
 
 ## 導入 SDK
 #### Android Studio
