@@ -267,7 +267,7 @@ import com.core.adnsdk.ErrorMessage;
     
 8. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
 
-  ```
+  ``` java
   <activity
       android:name="com.core.adnsdk.ExpandScreenVideoActivity"
       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -370,7 +370,7 @@ import com.core.adnsdk.AdPoolListener;
 
 6. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
 
-  ```
+  ``` java
   <activity
       android:name="com.core.adnsdk.ExpandScreenVideoActivity"
       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
