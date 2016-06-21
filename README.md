@@ -196,7 +196,7 @@ import com.core.adnsdk.ErrorMessage;
     
     範例：
     ```java
-    mNativeAd = new AdCustom(this, "placement(custom)", renderer, mainContainer);
+    mNativeAd = new AdView(this, "placement(custom)", renderer, mainContainer);
     ```
 4. 設定並且實作 ```AdListener```：
 
