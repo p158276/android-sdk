@@ -189,7 +189,9 @@ public class ExampleListViewWithBanner extends Activity {
         if (dynamicAdView != null) {
             dynamicAdView.onPause();
         }
-        mAdAdapter.onPause();
+        if (mAdAdapter != null) {
+            mAdAdapter.onPause();
+        }
         super.onPause();
     }
 
@@ -198,7 +200,9 @@ public class ExampleListViewWithBanner extends Activity {
         if (dynamicAdView != null) {
             dynamicAdView.onResume();
         }
-        mAdAdapter.onResume();
+        if (mAdAdapter != null) {
+            mAdAdapter.onResume();
+        }
         super.onResume();
     }
 
@@ -208,8 +212,10 @@ public class ExampleListViewWithBanner extends Activity {
             dynamicAdView.onDestroy();
             dynamicAdView = null;
         }
-        mAdAdapter.onDestroy();
-        mAdAdapter = null;
+        if (mAdAdapter != null) {
+            mAdAdapter.onDestroy();
+            mAdAdapter = null;
+        }
         super.onDestroy();
     }
 }

@@ -129,20 +129,26 @@ public class ExampleListView extends Activity {
 
     @Override
     protected void onPause() {
-        mAdAdapter.onPause();
+        if (mAdAdapter != null) {
+            mAdAdapter.onPause();
+        }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        mAdAdapter.onResume();
+        if (mAdAdapter != null) {
+            mAdAdapter.onResume();
+        }
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        mAdAdapter.onDestroy();
-        mAdAdapter = null;
+        if (mAdAdapter != null) {
+            mAdAdapter.onDestroy();
+            mAdAdapter = null;
+        }
         super.onDestroy();
     }
 }

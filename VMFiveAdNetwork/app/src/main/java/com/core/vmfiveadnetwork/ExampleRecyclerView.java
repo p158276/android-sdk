@@ -114,20 +114,26 @@ public class ExampleRecyclerView extends Activity {
 
     @Override
     protected void onPause() {
-        mRecyclerAdapter.onPause();
+        if (mRecyclerAdapter != null) {
+            mRecyclerAdapter.onPause();
+        }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        mRecyclerAdapter.onResume();
+        if (mRecyclerAdapter != null) {
+            mRecyclerAdapter.onResume();
+        }
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        mRecyclerAdapter.onDestroy();
-        mRecyclerAdapter = null;
+        if (mRecyclerAdapter != null) {
+            mRecyclerAdapter.onDestroy();
+            mRecyclerAdapter = null;
+        }
         super.onDestroy();
     }
 
