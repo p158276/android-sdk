@@ -112,7 +112,7 @@
 ## 卡片型原生影音廣告
 #### Layout
 ---
-您可以直接套用範例專案中的 ```card_ad_item.xml``` ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
+您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
 <TODO - Layout example>
 
 文字和圖片等素材使用標準的 ```TextView``` 和 ```ImageView``` 呈現即可，但**用來播放影音廣告的元件請務必使用 ```com.core.adnsdk.VideoPlayer```**。
@@ -143,7 +143,7 @@ public class MyApplication extends Application {
 
 #### 載入並且展示原生影片廣告
 ---
-開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleCard.java```
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleCard.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleCard.java)
 
 ```java
 import com.core.adnsdk.AdView;
@@ -249,7 +249,7 @@ import com.core.adnsdk.ErrorMessage;
     ```
     
 ## ListView 型原生影片廣告
-開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleListView.java```
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleListView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleListView.java)
 
 ```java
 import com.core.adnsdk.AdObject;
@@ -342,6 +342,7 @@ import com.core.adnsdk.AdPoolListener;
     ```
 
 ## 影音插頁廣告(Interstitial)
+完整的程式碼請參考 [```MainActivity.java Interstitial fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
 
 1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告插頁廣告的 ```Actitivity ```
     * 直屏的 ```Activity```：
