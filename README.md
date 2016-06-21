@@ -45,6 +45,7 @@
             releaseCompile 'com.vmfive:VMFiveADNSDK:+:release@aar'
         }
         ```
+    也可使用[指定版本](https://github.com/applauseadn/android-sdk/tree/master/VMFiveADNSDK/com/vmfive/VMFiveADNSDK), ```'com.vmfive:VMFiveADNSDK:2.0.1.3:debug@aar' ```
 
 * 手動
     1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
