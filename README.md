@@ -211,6 +211,8 @@ import com.core.adnsdk.ErrorMessage;
         void onAdImpressed(); //廣告曝光
     }
     ```
+    > 建議使用 AdListenerAdapter, 可以只實作一部份的 event callbacks
+    
 5. 設定測試模式
     當打開測試模式的時候，SDK 會接受到測試用的廣告。測試廣告並沒有分潤，因此**測試完成後 App 上線前請一定要關閉測試模式。(設成 false )**
 
@@ -308,6 +310,7 @@ import com.core.adnsdk.AdPoolListener;
         void onAdImpressed(); //廣告曝光
     }
     ```
+    > 建議使用 AdPoolListenerAdapter, 可以只實作一部份的 event callbacks
 
 5. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdView``` 的 ```LifeCycle``` 方法避免內存洩漏
 
@@ -385,6 +388,7 @@ import com.core.adnsdk.AdPoolListener;
         void onAdImpressed(); //廣告曝光
     }
     ```
+    > 建議使用 AdListenerAdapter, 可以只實作一部份的 event callbacks
 
 5. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
 
