@@ -8,8 +8,10 @@
   * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
   * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
   * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
-* [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#listview-型原生影片廣告)
+* [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#Listview-型原生影片廣告)
 * [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
+* [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
+
 
 ## 概論
 原生廣告沒有固定的規格大小，需要透過應用程式開發者的巧思將廣告的素材重新設計與編排後融合到使用者介面之中。
@@ -19,6 +21,7 @@
 除此之外在原本的橫幅和插頁廣告版位外，可以在更多版位擺放廣告 **創造更多收入來源。**
 
 <TODO - Native Video Ads Pic Example>
+![Video_Card](https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true)
 
 ## 導入 SDK
 #### Android Studio
@@ -342,3 +345,6 @@ public void onDestroy() {
     }
 }
 ```
+
+## 問題排解
+1. 
