@@ -45,6 +45,7 @@ dependencies {
 
 ## 更新 AndroidManifest.xml
 1. 修改 ```AndroidManifest.xml``` 加入必要的權限
+
     ```java
     //Required permissions
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -58,6 +59,7 @@ dependencies {
     ```
 
 2. 加入 ```Google GMS Activity``` 和 ```Meta-data```
+
     ```java
     <activity
         android:name="com.google.android.gms.ads.AdActivity"
@@ -69,6 +71,7 @@ dependencies {
     ```
 
 3. 指定 ```Application``` 入口。如以下的例子：我們指定 ```MyApplication.java``` 作為我們 ```application``` 開始執行的入口
+
     ```java
     <application
         android:name=".MyApplication"
@@ -89,7 +92,6 @@ dependencies {
 
 另外需要注意的是 -  CTA 文字需要設定 ```Background``` 屬性，**好提高廣告成效並取得更佳的分潤**。
 例如我們的範例 App 就在 ```native_video_cta_border.xml``` 為 ```CTA Text``` 加上了邊框且指定 ```android:background="@drawable/native_video_cta_border"```。
-
 
 
 #### 初始化SDK
@@ -124,6 +126,7 @@ import com.core.adnsdk.CardAdRenderer;
 import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
 ```
+
 1. 創建 ```CardViewBinder``` ，透過 ```CardViewBinder``` 指定廣告素材和 UI 元件的關係 <TODO -上下交換順序，然後補充是在 onCreate 裡面加入>
     * ```public final Builder loadingId(final int loadingId)```：綁定 Loading image 與 UI 元件
     * ```public final Builder titleId(final int titleId)```：綁定標題文字與 UI 元件
@@ -148,12 +151,14 @@ import com.core.adnsdk.ErrorMessage;
     ```
     
 2. 創建 ```CardAdRenderer``` 物件，利用上一步的 ```CardViewBinder```
+
     ```java
     // set layout builder to renderer
     CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
     ```
     
-3. 創建 ```AdCustom``` 物件 
+3. 創建 ```AdCustom``` 物件
+
     ```java
     AdCustom(Activity activity, String placeName, CardAdRenderer renderer, ViewGroup parent)
     ```
@@ -167,6 +172,7 @@ import com.core.adnsdk.ErrorMessage;
     mNativeAd = new AdCustom(this, "placement(custom)", vRenderer, mainContainer);
     ```
 4. 設定並且實作 ```AdListener```：
+
     ```java
     public interface AdListener {
         void onAdLoaded(AdObject adObject); // 廣告完成載入
@@ -179,15 +185,19 @@ import com.core.adnsdk.ErrorMessage;
     ```
 5. 設定測試模式
     當打開測試模式的時候，SDK 會接受到測試用的廣告。測試廣告並沒有分潤，因此**測試完成後 App 上線前請一定要關閉測試模式。(設成 false )**
+
     ```java
     mNativeAd.setTestMode(true)
     ```
 
 6. 呼叫 ```loadAd``` 載入廣告
+
     ```java
     mNativeAd.loadAd();
     ```
+
 7. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdCustom``` 的 ```LifeCycle``` 方法避免內存洩漏
+
     ```java
     @Override
     protected void onResume() {
@@ -222,6 +232,7 @@ import com.core.adnsdk.AdPoolListener;
 ```
 
 1. 新增一個 ```CardViewBinder``` 物件，將 ```Layout``` 裡的 UI 元件 id 透過 ```CardViewBinder``` 與綁定廣告素材的關聯與規則
+
     範例：
     ```java
     CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.custom_video_ad_list_item)
@@ -234,11 +245,13 @@ import com.core.adnsdk.AdPoolListener;
         .build();
     ```
 2. 建立一個 ```CardAdRenderer```，並且將定義好素材與排版關聯的 ```CardViewBinder``` 傳入
+
     ```java
     CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
     ```
     
 3. 建立一個 ```NativeAdAdapter``` 物件
+
     傳入 ```Context``` ，要插入原生廣告的 ```ListView``` 和 ```Adapter``` ，以及一個任意的字串。這個字串會在後台顯示作為廣告版位的 TAG；當在很多不同的版位插入廣告的時候，就可以利用版位的 TAG 觀察與分析各個版位的廣告收益。
 
     ```java
@@ -253,7 +266,9 @@ import com.core.adnsdk.AdPoolListener;
     ```java
     mAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list)")
     ```
+
 4. 設定與實作 ```AdPoolListener```， ```AdPoolListener``` 的事件會多帶一個 ```index``` 參數表示插入廣告的位置
+
     ```java
     public interface AdPoolListener {
         void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
@@ -289,14 +304,19 @@ import com.core.adnsdk.AdPoolListener;
     </activity>
     ```
 2. 創建 ```adInterstitial``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
+
     ```AdInterstitialType.INTERSTITIAL_VIDEO ```
       
     ```java
     adInterstitial = new AdInterstitial(context, "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
     ```
+
 3. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
-     ```adInterstitial.setTestMode(true); ```
+
+    ```adInterstitial.setTestMode(true); ```
+
 4. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
+
     ```java
     public interface AdListener {
         void onAdLoaded(AdObject adObject); // 廣告完成載入
@@ -308,11 +328,17 @@ import com.core.adnsdk.AdPoolListener;
         void onAdImpressed(); //廣告曝光
     }
     ```
+
 5. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
+
     ```adInterstitial.loadAd(); ```
+    
 6. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
+
     ```adInterstitial.showAd(); ```
+
 7. 處理插頁廣告的 Life Cycle，釋放資源
+
     ```java
     @Override
     public void onResume() {
@@ -339,6 +365,7 @@ import com.core.adnsdk.AdPoolListener;
 
 ## 問題排解
 1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
+
     ``` java
     /**
      * 請確認在 AndroidManifest.xml, 該版位所對應的 Activity/Application context 是否有啟用 hardwareAccelerated
@@ -347,6 +374,7 @@ import com.core.adnsdk.AdPoolListener;
     ```
     
 2. 廣告無法顯示素材的圖檔, 或影音廣告的影片, 無顯示CoverImage, 播放影片時也是黑屏
+
     ``` java
     /**
      * 請確認在 AndroidManifest.xml, 是否有增加 read/write storage permissions
