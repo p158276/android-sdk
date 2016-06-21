@@ -415,5 +415,6 @@ import com.core.adnsdk.AdPoolListener;
     // check permissions for M, if some permission denied, it would shut down activity
     checkRequiredPermissions();
     ```
+    
     > 若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
     
