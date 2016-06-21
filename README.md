@@ -51,11 +51,9 @@
     
     > 因Gradle有Cache機制, 可使用 ```./gradlew --refresh-dependencies``` 強制更新
     
-        ```
         06-21 18:18:13.568 13385-13419/com.core.vmfiveadnetwork E/CentralManager: Please update ADN SDK to the most updated version!
         06-21 18:18:13.568 13385-13419/com.core.vmfiveadnetwork E/CentralManager: Current SDK version: 2.0.1.4
         06-21 18:18:13.568 13385-13419/com.core.vmfiveadnetwork E/CentralManager: The most updated SDK version: 2.0.1.5
-        ```
     
     > 也可使用[指定版本](https://github.com/applauseadn/android-sdk/tree/master/VMFiveADNSDK/com/vmfive/VMFiveADNSDK), ```'com.vmfive:VMFiveADNSDK:2.0.1.3:debug@aar' ```
 
