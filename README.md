@@ -112,7 +112,7 @@
 ## 卡片型原生影音廣告
 #### Layout
 ---
-您可以直接套用範例專案中的 ```custom_video_ad_list_item.xml``` ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
+您可以直接套用範例專案中的 ```card_ad_item.xml``` ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
 <TODO - Layout example>
 
 文字和圖片等素材使用標準的 ```TextView``` 和 ```ImageView``` 呈現即可，但**用來播放影音廣告的元件請務必使用 ```com.core.adnsdk.VideoPlayer```**。
@@ -143,10 +143,10 @@ public class MyApplication extends Application {
 
 #### 載入並且展示原生影片廣告
 ---
-開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleNative.java```
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleCard.java```
 
 ```java
-import com.core.adnsdk.AdCustom;
+import com.core.adnsdk.AdView;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
 import com.core.adnsdk.CardAdRenderer;
@@ -167,7 +167,7 @@ import com.core.adnsdk.ErrorMessage;
     範例：
     ```java
     // native video layout builder
-    CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.card_ad_item)
+    CardViewBinder binder = new CardViewBinder.Builder(R.layout.card_ad_item)
         .loadingId(R.id.native_loading_image) 
         .mainImageId(R.id.native_main_image) 
         .titleId(R.id.native_title) 
@@ -181,13 +181,13 @@ import com.core.adnsdk.ErrorMessage;
 
     ```java
     // set layout builder to renderer
-    CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
+    CardAdRenderer renderer = new CardAdRenderer(binder);
     ```
     
-3. 創建 ```AdCustom``` 物件
+3. 創建 ```AdView``` 物件
 
     ```java
-    AdCustom(Activity activity, String placeName, CardAdRenderer renderer, ViewGroup parent)
+    AdView(Activity activity, String placeName, CardAdRenderer renderer, ViewGroup parent)
     ```
     * ```activity```：Activity context
     * ```placement```：任意字串。此字串會傳送到後台，可利用此字串在後台查詢廣告數據與收益
@@ -196,7 +196,7 @@ import com.core.adnsdk.ErrorMessage;
     
     範例：
     ```java
-    mNativeAd = new AdCustom(this, "placement(custom)", vRenderer, mainContainer);
+    mNativeAd = new AdCustom(this, "placement(custom)", renderer, mainContainer);
     ```
 4. 設定並且實作 ```AdListener```：
 
@@ -223,7 +223,7 @@ import com.core.adnsdk.ErrorMessage;
     mNativeAd.loadAd();
     ```
 
-7. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdCustom``` 的 ```LifeCycle``` 方法避免內存洩漏
+7. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdView``` 的 ```LifeCycle``` 方法避免內存洩漏
 
     ```java
     @Override
@@ -246,7 +246,7 @@ import com.core.adnsdk.ErrorMessage;
     ```
     
 ## ListView 型原生影片廣告
-開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleNative.java```
+開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 ```ExampleListView.java```
 
 ```java
 import com.core.adnsdk.AdObject;
@@ -262,7 +262,7 @@ import com.core.adnsdk.AdPoolListener;
 
     範例：
     ```java
-    CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.custom_video_ad_list_item)
+    CardViewBinder binder = new CardViewBinder.Builder(R.layout.card_ad_item)
         .loadingId(R.id.native_loading_image)
         .mainImageId(R.id.native_main_image)
         .titleId(R.id.native_title)
@@ -274,7 +274,7 @@ import com.core.adnsdk.AdPoolListener;
 2. 建立一個 ```CardAdRenderer```，並且將定義好素材與排版關聯的 ```CardViewBinder``` 傳入
 
     ```java
-    CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
+    CardAdRenderer renderer = new CardAdRenderer(binder);
     ```
     
 3. 建立一個 ```NativeAdAdapter``` 物件
@@ -298,13 +298,42 @@ import com.core.adnsdk.AdPoolListener;
 
     ```java
     public interface AdPoolListener {
-        void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
-        void onError(int index,ErrorMessage err); // SDK出現錯誤
-        void onAdClicked(int index,); //廣告被點擊
-        void onAdFinished(int index,); //廣告點擊完成跳轉後
-        void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
-        boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
+        void onAdLoaded(int index, AdObject adObject); // 廣告完成載入
+        void onError(int index, ErrorMessage err); // SDK出現錯誤
+        void onAdClicked(int index); //廣告被點擊
+        void onAdFinished(int index); //廣告點擊完成跳轉後
+        void onAdReleased(int index); //廣告完成卸載並且釋放所有資源
+        boolean onAdWatched(int index); //影片播放完畢,要自動載入下一檔廣告請回傳true
         void onAdImpressed(); //廣告曝光
+    }
+    ```
+
+5. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdView``` 的 ```LifeCycle``` 方法避免內存洩漏
+
+    ```java
+    @Override
+    public void onResume() {
+        if (mAdAdapter != null) {
+            mAdAdapter.onResume();
+        }
+        super.onResume();
+    }
+    
+    @Override
+    public void onPause() {
+        if (mAdAdapter != null) {
+            mAdAdapter.onPause();
+        }
+        super.onPause();
+    }
+    
+    @Override
+    public void onDestroy() {
+        if (mAdAdapter != null) {
+            mAdAdapter.onDestroy();
+            mAdAdapter = null;
+        }
+        super.onDestroy();
     }
     ```
 
@@ -372,6 +401,7 @@ import com.core.adnsdk.AdPoolListener;
         if (adInterstitial != null) {
             adInterstitial.onResume();
         }
+        super.onResume();
     }
     
     @Override
@@ -379,6 +409,7 @@ import com.core.adnsdk.AdPoolListener;
         if (adInterstitial != null) {
             adInterstitial.onPause();
         }
+        super.onPause();
     }
     
     @Override
@@ -387,6 +418,7 @@ import com.core.adnsdk.AdPoolListener;
             adInterstitial.onDestroy();
             adInterstitial = null;
         }
+        super.onDestroy();
     }
     ```
 
