@@ -25,16 +25,39 @@
 ## 導入 SDK
 #### Android Studio
 ---
-1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
-2. 將 SDK 以新增 ```Module Dependency``` 的方式加入 ```Gradle```  <TODO -這部分可以再說清楚一點>
-3. 修改 ```build.gradle``` 引入 ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
-```java
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    ...
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-}
-```
+
+* 自動
+    1. 修改 ```build.gradle``` 引入 ```VMFiveADNSDK Maven config```, ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
+    
+        ```java
+        android {
+            repositories {
+                maven {
+                    url 'https://github.com/applauseadn/android-sdk/raw/master/VMFiveADNSDK/'
+                }
+            }
+        }
+        dependencies {
+            compile fileTree(dir: 'libs', include: ['*.jar'])
+            ...
+            compile 'com.google.android.gms:play-services-ads:8.4.0'
+            debugCompile 'com.vmfive:VMFiveADNSDK:+:debug@aar'
+            releaseCompile 'com.vmfive:VMFiveADNSDK:+:release@aar'
+        }
+        ```
+
+* 手動
+    1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
+    2. 將 SDK 以新增 ```Module Dependency``` 的方式加入 ```Gradle```  <TODO -這部分可以再說清楚一點>
+    3. 修改 ```build.gradle``` 引入 ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
+    
+        ```java
+        dependencies {
+            compile fileTree(dir: 'libs', include: ['*.jar'])
+            ...
+            compile 'com.google.android.gms:play-services-ads:8.4.0'
+        }
+        ```
 
 #### Eclipse
 ---
@@ -390,4 +413,3 @@ import com.core.adnsdk.AdPoolListener;
     ```
     若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
     
-3. 
