@@ -208,6 +208,7 @@ import com.core.adnsdk.ErrorMessage;
         void onAdFinished(); //廣告點擊完成跳轉後
         void onAdReleased(); //廣告完成卸載並且釋放所有資源
         boolean onAdWatched(); //影片播放完畢,要自動載入下一檔廣告請回傳true,否則回傳false
+        void onAdImpressed(); //廣告曝光
     }
     ```
 5. 設定測試模式
