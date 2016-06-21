@@ -49,7 +49,7 @@
         }
         ```
     
-    > 因Gradle有Cache機制, 可使用 ```./gradlew --refresh-dependencies``` 強制更新
+    > 因Gradle有Cache機制, 一段時間後才會更新, 若發生底下 error message, 可使用 ```./gradlew --refresh-dependencies``` 強制更新
     
         06-21 18:18:13.568 13385-13419/com.core.vmfiveadnetwork E/CentralManager: Please update ADN SDK to the most updated version!
         06-21 18:18:13.568 13385-13419/com.core.vmfiveadnetwork E/CentralManager: Current SDK version: 2.0.1.4
