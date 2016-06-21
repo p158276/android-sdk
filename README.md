@@ -409,11 +409,11 @@ import com.core.adnsdk.AdPoolListener;
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     ```
-    若開發者的 Application 為 Android M(23) 版本以上, 需要增加 request permission dialog, 可參考
+    > 若開發者的 Application 為 Android M(23) 版本以上, 需要增加 request permission dialog, 可參考
     [VMFiveAdNetwork Demo App 的實現](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
     ``` java
     // check permissions for M, if some permission denied, it would shut down activity
     checkRequiredPermissions();
     ```
-    若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
+    > 若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
     
