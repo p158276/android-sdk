@@ -346,4 +346,28 @@ public void onDestroy() {
 ```
 
 ## 問題排解
-1. 
+1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
+``` java
+/**
+ * 請確認在 AndroidManifest.xml, 該版位所對應的 Activity/Application context 是否有啟用 hardwareAccelerated
+*/
+android:hardwareAccelerated="true"
+```
+
+2. 廣告無法顯示素材的圖檔, 或影音廣告的影片, 無顯示CoverImage, 播放影片時也是黑屏
+``` java
+/**
+ * 請確認在 AndroidManifest.xml, 是否有增加 read/write storage permissions
+*/
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
+若開發者的 Application 為 Android M(23) 版本以上, 需要增加 request permission dialog, 可參考
+[VMFiveAdNetwork Demo App 的實現](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
+``` java
+// check permissions for M, if some permission denied, it would shut down activity
+checkRequiredPermissions();
+```
+若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
+
+3. 
