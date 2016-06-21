@@ -28,9 +28,9 @@
 3. 修改 ```build.gradle``` 引入 ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
 ```java
 dependencies {
-   compile fileTree(dir: 'libs', include: ['*.jar'])
-   ...
-   compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    ...
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
 }
 ```
 
@@ -44,7 +44,7 @@ dependencies {
 ## 更新 AndroidManifest.xml
 1. 修改 ```AndroidManifest.xml``` 加入必要的權限
    
-    ```java
+```java
 //Required permissions
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 <uses-permission android:name="android.permission.INTERNET"/>
@@ -57,25 +57,24 @@ dependencies {
 ```
 2. 加入 ```Google GMS Activity``` 和 ```Meta-data```
     
-    ```java
+```java
 <activity
-   android:name="com.google.android.gms.ads.AdActivity"
-   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-   android:hardwareAccelerated="true"/>
+    android:name="com.google.android.gms.ads.AdActivity"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+    android:hardwareAccelerated="true"/>
 <meta-data
-   android:name="com.google.android.gms.version"
-   android:value="@integer/google_play_services_version"/>
+    android:name="com.google.android.gms.version"
+    android:value="@integer/google_play_services_version"/>
 ```
 3. 指定 ```Application``` 入口。如以下的例子：我們指定 ```MyApplication.java``` 作為我們 ```application``` 開始執行的入口
-
-    ```java
+```java
 <application
-   android:name=".MyApplication"
-   android:allowBackup="true"
-   android:hardwareAccelerated="true"
-   android:icon="@mipmap/ic_launcher"
-   android:label="@string/app_name"
-   android:theme="@style/AppTheme">
+    android:name=".MyApplication"
+    android:allowBackup="true"
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme">
 ```
 
 ## 卡片型原生影音廣告
@@ -97,18 +96,18 @@ dependencies {
 **在初始化時一定要填入正確的 ```API KEY``` ，否則無法取得線上販售的廣告獲得分潤。**
 
 ```java
-    public class MyApplication extends Application {
-       @Override
-       public void onCreate() {
-           super.onCreate();
-           /**
-           initialize(Context context, String YOUR_APIKEY);
-            * context: Application Context
-            * apiKey: 向後台請求廣告需要用的字串
-           */
-           ADN.initialize(this, "55e7b3df0cfbf7393bb00af1");
-       }
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        /** 
+         * initialize(Context context, String YOUR_APIKEY);
+         * context: Application Context
+         * apiKey: 向後台請求廣告需要用的字串
+        */
+        ADN.initialize(this, "55e7b3df0cfbf7393bb00af1");
     }
+}
 ```
 
 #### 載入並且展示原生影片廣告
@@ -137,13 +136,13 @@ import com.core.adnsdk.ErrorMessage;
     ```java
     // native video layout builder
     CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.card_ad_item)
-       .loadingId(R.id.native_loading_image) 
-       .mainImageId(R.id.native_main_image) 
-       .titleId(R.id.native_title) 
-       .videoPlayerId(R.id.native_video_layout) 
-       .iconImageId(R.id.native_icon_image)
-       .callToActionId(R.id.native_cta) 
-       .build();
+        .loadingId(R.id.native_loading_image) 
+        .mainImageId(R.id.native_main_image) 
+        .titleId(R.id.native_title) 
+        .videoPlayerId(R.id.native_video_layout) 
+        .iconImageId(R.id.native_icon_image)
+        .callToActionId(R.id.native_cta) 
+        .build();
     ```
     
 2. 創建 ```CardAdRenderer``` 物件，利用上一步的 ```CardViewBinder```
@@ -169,13 +168,13 @@ import com.core.adnsdk.ErrorMessage;
 
     ```java
     public interface AdListener {
-     void onAdLoaded(AdObject adObject); // 廣告完成載入
-     void onError(ErrorMessage err); // SDK出現錯誤
-     void onAdClicked(); //廣告被點擊
-     void onAdFinished(); //廣告點擊完成跳轉後
-     void onAdReleased(); //廣告完成卸載並且釋放所有資源
-     boolean onAdWatched(); //影片播放完畢,要自動載入下一檔廣告請回傳true,否則回傳false
-  }
+        void onAdLoaded(AdObject adObject); // 廣告完成載入
+        void onError(ErrorMessage err); // SDK出現錯誤
+        void onAdClicked(); //廣告被點擊
+        void onAdFinished(); //廣告點擊完成跳轉後
+        void onAdReleased(); //廣告完成卸載並且釋放所有資源
+        boolean onAdWatched(); //影片播放完畢,要自動載入下一檔廣告請回傳true,否則回傳false
+    }
     ```
 5. 設定測試模式
 
@@ -191,22 +190,22 @@ import com.core.adnsdk.ErrorMessage;
 7. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdCustom``` 的 ```LifeCycle``` 方法避免內存洩漏
     ```java
     @Override
-      protected void onResume() {
-         mNativeAd.onResume();
-         super.onResume();
-      }
+    protected void onResume() {
+        mNativeAd.onResume();
+        super.onResume();
+    }
       
-      @Override
-      protected void onPause() {
-         mNativeAd.onPause();
-         super.onPause();
-      }
+    @Override
+    protected void onPause() {
+        mNativeAd.onPause();
+        super.onPause();
+    }
       
-      @Override
-      protected void onDestroy() {
-         mNativeAd.onDestroy();
-         super.onDestroy();
-      }
+    @Override
+    protected void onDestroy() {
+        mNativeAd.onDestroy();
+        super.onDestroy();
+    }
     ```
     
 ## ListView 型原生影片廣告
@@ -227,18 +226,18 @@ import com.core.adnsdk.AdPoolListener;
     範例：
     ```java
     CardViewBinder vBinder = new CardViewBinder.Builder(R.layout.custom_video_ad_list_item)
-       .loadingId(R.id.native_loading_image)
-       .mainImageId(R.id.native_main_image)
-       .titleId(R.id.native_title)
-       .videoPlayerId(R.id.native_video_layout)
-       .iconImageId(R.id.native_icon_image)
-       .callToActionId(R.id.native_cta)
-       .build();
+        .loadingId(R.id.native_loading_image)
+        .mainImageId(R.id.native_main_image)
+        .titleId(R.id.native_title)
+        .videoPlayerId(R.id.native_video_layout)
+        .iconImageId(R.id.native_icon_image)
+        .callToActionId(R.id.native_cta)
+        .build();
     ```
 2. 建立一個 ```CardAdRenderer```，並且將定義好素材與排版關聯的 ```CardViewBinder``` 傳入
 
     ```java
-      CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
+    CardAdRenderer vRenderer = new CardAdRenderer(vBinder);
     ```
 3. 建立一個 ```NativeAdAdapter``` 物件
 
@@ -258,17 +257,17 @@ import com.core.adnsdk.AdPoolListener;
     ```
 4. 設定與實作 ```AdPoolListener```， ```AdPoolListener``` 的事件會多帶一個 ```index``` 參數表示插入廣告的位置
  
-    ```java
-    public interface AdPoolListener {
-   void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
-   void onError(int index,ErrorMessage err); // SDK出現錯誤
-   void onAdClicked(int index,); //廣告被點擊
-   void onAdFinished(int index,); //廣告點擊完成跳轉後
-   void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
-   boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
-   void onAdImpressed(); //廣告曝光
+```java
+public interface AdPoolListener {
+    void onAdLoaded(int index,AdObject adObject); // 廣告完成載入
+    void onError(int index,ErrorMessage err); // SDK出現錯誤
+    void onAdClicked(int index,); //廣告被點擊
+    void onAdFinished(int index,); //廣告點擊完成跳轉後
+    void onAdReleased(int index,); //廣告完成卸載並且釋放所有資源
+    boolean onAdWatched(int index,); //影片播放完畢,要自動載入下一檔廣告請回傳true
+    void onAdImpressed(); //廣告曝光
 }
-    ```
+```
 
 ## 影音插頁廣告(Interstitial)
 
@@ -277,70 +276,69 @@ import com.core.adnsdk.AdPoolListener;
   
     ```java
     <activity
-   android:name="com.core.adnsdk.InterstitialActivity"
-   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-   android:hardwareAccelerated="true">
+        android:name="com.core.adnsdk.InterstitialActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:hardwareAccelerated="true">
     </activity>
     ```
     * 轉橫屏全螢幕播放的 ```Activity```:
   
     ```java
     <activity
-   android:name="com.core.adnsdk.FullScreenVideoActivity"
-   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-   android:screenOrientation="landscape"
-   android:hardwareAccelerated="true">
+        android:name="com.core.adnsdk.FullScreenVideoActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:screenOrientation="landscape"
+        android:hardwareAccelerated="true">
     </activity>
     ```
 2. 創建 ```adInterstitial``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
- ```AdInterstitialType.INTERSTITIAL_VIDEO ```
+```AdInterstitialType.INTERSTITIAL_VIDEO ```
   
-  ```java
-    adInterstitial = new AdInterstitial(context,
-    "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
-    ```
+```java
+adInterstitial = new AdInterstitial(context, "placement(interstitial_admob)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
+```
 2. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
  ```adInterstitial.setTestMode(true); ```
 3. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
 
-  ```java
+```java
 public interface AdListener {
-   void onAdLoaded(AdObject adObject); // 廣告完成載入
-   void onError(ErrorMessage err); // SDK 出現錯誤
-   void onAdClicked(); //廣告被點擊
-   void onAdFinished(); //廣告點擊完成跳轉後
-   void onAdReleased(); //廣告完成卸載並且釋放所有資源
-   boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
-   void onAdImpressed(); //廣告曝光
+    void onAdLoaded(AdObject adObject); // 廣告完成載入
+    void onError(ErrorMessage err); // SDK 出現錯誤
+    void onAdClicked(); //廣告被點擊
+    void onAdFinished(); //廣告點擊完成跳轉後
+    void onAdReleased(); //廣告完成卸載並且釋放所有資源
+    boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
+    void onAdImpressed(); //廣告曝光
 }
-    ```
+```
 4. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
 
- ```adInterstitial.loadAd(); ```
+```adInterstitial.loadAd(); ```
 5. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
 
- ```adInterstitial.showAd(); ```
+```adInterstitial.showAd(); ```
 6. 處理插頁廣告的 Life Cycle，釋放資源
-  ```java
-  @Override
-  public void onResume() {
-     if (adInterstitial != null) {
-         adInterstitial.onResume();
-     }
-  }
-  
-  @Override
-  public void onPause() {
-     if (adInterstitial != null) {
-         adInterstitial.onPause();
-     }
-  }
-  
-  @Override
-  public void onDestroy() {
-     if (adInterstitial != null) {
-         adInterstitial.onDestroy();
-         adInterstitial = null;
-     }
-  }
-    ```
+```java
+@Override
+public void onResume() {
+    if (adInterstitial != null) {
+        adInterstitial.onResume();
+    }
+}
+
+@Override
+public void onPause() {
+    if (adInterstitial != null) {
+        adInterstitial.onPause();
+    }
+}
+
+@Override
+public void onDestroy() {
+    if (adInterstitial != null) {
+        adInterstitial.onDestroy();
+        adInterstitial = null;
+    }
+}
+```
