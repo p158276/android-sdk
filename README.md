@@ -36,7 +36,7 @@
         android {
             repositories {
                 maven {
-                    url 'https://github.com/applauseadn/android-sdk/raw/master/VMFiveADNSDK/'
+                    url 'https://raw.githubusercontent.com/applauseadn/android-sdk/master/VMFiveADNSDK/'
                 }
             }
         }
