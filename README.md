@@ -19,9 +19,7 @@
 原生廣告帶來 **比傳統橫幅或是插頁廣告更友善的體驗與更好的成效**；
 
 除此之外在原本的橫幅和插頁廣告版位外，可以在更多版位擺放廣告 **創造更多收入來源。**
-
-<TODO - Native Video Ads Pic Example>
-![Video_Card](https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true =216x384)
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
 
 ## 導入 SDK
 #### Android Studio
