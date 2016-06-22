@@ -340,6 +340,7 @@ import com.core.adnsdk.AdPoolListener;
 
     ```java
     mAdAdapter.setTestMode(true)
+    ```
 
 6. 在 ```LifeCycle``` 的函式中，呼叫對應的 ```AdView``` 的 ```LifeCycle``` 方法避免內存洩漏
 
