@@ -95,7 +95,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     ```
 
-2. 加入 ```Google GMS Activity``` 和 ```Meta-data```
+2. 加入 ```Google GMS Activity``` 和 ```Meta-data```以及```ExpandFullScreenActivity```
 
     ```java
     <activity
@@ -105,6 +105,11 @@
     <meta-data
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version"/>
+    <activity
+            android:name="com.core.adnsdk.ExpandScreenVideoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:hardwareAccelerated="true">
+    </activity>
     ```
 
 3. 指定 ```Application``` 入口。如以下的例子：我們指定 ```MyApplication.java``` 作為我們 ```application``` 開始執行的入口
@@ -493,3 +498,7 @@ import com.core.adnsdk.AdPoolListener;
     
     > 若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
     
+3. 是否支援輪播(Mediation)
+
+   蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
+  
