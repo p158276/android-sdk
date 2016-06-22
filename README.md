@@ -95,7 +95,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     ```
 
-2. 加入 ```Google GMS Activity``` 和 ```Meta-data```以及```ExpandFullScreenActivity```, 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
+2. 加入 ```Google GMS Activity``` 和 ```Meta-data```以及因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ```ExpandFullScreenActivity```
 
     ```java
     <activity
