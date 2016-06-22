@@ -95,7 +95,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     ```
 
-2. 加入 ```Google GMS Activity``` 和 ```Meta-data```以及```ExpandFullScreenActivity```
+2. 加入 ```Google GMS Activity``` 和 ```Meta-data```以及```ExpandFullScreenActivity```, 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
 
     ```java
     <activity
@@ -124,16 +124,6 @@
         android:theme="@style/AppTheme">
     ```
     > 若開發者請求的廣告有包含影音檔, 該 Activity / Application 需要啟用 hardwareAccelerated, 否則無法觀看影片
-
-4. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
-
-  ``` java
-  <activity
-      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
-      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-      android:hardwareAccelerated="true">
-  </activity>
-  ```
 
 ## 卡片型原生影音廣告
 #### Layout
