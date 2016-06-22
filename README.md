@@ -123,6 +123,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
     ```
+    > 若開發者請求的廣告有包含影音檔, 該 Activity / Application 需要啟用 hardwareAccelerated, 否則無法觀看影片
+
+4. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
+
+  ``` java
+  <activity
+      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+      android:hardwareAccelerated="true">
+  </activity>
+  ```
 
 ## 卡片型原生影音廣告
 #### Layout
@@ -269,16 +280,6 @@ import com.core.adnsdk.ErrorMessage;
         super.onDestroy();
     }
     ```
-    
-8. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
-
-  ``` java
-  <activity
-      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
-      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-      android:hardwareAccelerated="true">
-  </activity>
-  ```
     
 ## ListView 型原生影片廣告
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleListView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleListView.java)
