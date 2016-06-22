@@ -305,7 +305,7 @@ import com.core.adnsdk.AdPoolListener;
     
 3. 建立一個 ```NativeAdAdapter``` 物件
 
-    傳入 ```Context``` ，要插入原生廣告的 ```ListView``` 和 ```Adapter``` ，以及一個任意的字串。這個字串會在後台顯示作為廣告版位的 TAG；當在很多不同的版位插入廣告的時候，就可以利用版位的 TAG 觀察與分析各個版位的廣告收益。
+    傳入 ```Activity``` ，要插入原生廣告的 ```ListView``` 和 ```Adapter``` ，以及一個任意的字串。這個字串會在後台顯示作為廣告版位的 TAG；當在很多不同的版位插入廣告的時候，就可以利用版位的 TAG 觀察與分析各個版位的廣告收益。
 
     ```java
     public NativeAdAdapter(final Activity activity, final ListView listView, final Adapter originalAdapter, final String placement)
@@ -363,16 +363,6 @@ import com.core.adnsdk.AdPoolListener;
         super.onDestroy();
     }
     ```
-
-6. 因預設會有影片全屏播放功能, 需要在 AndroidManifest.xml 宣告 ExpandScreenVideoActivity
-
-  ``` java
-  <activity
-      android:name="com.core.adnsdk.ExpandScreenVideoActivity"
-      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-      android:hardwareAccelerated="true">
-  </activity>
-  ```
 
 ## 影音插頁廣告(Interstitial)
 完整的程式碼請參考 [```MainActivity.java Interstitial fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
