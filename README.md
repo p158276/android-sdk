@@ -11,10 +11,10 @@
     * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
   - [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#Listview-型原生影片廣告)
   - [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
-- [輪播(Mediation)](https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播Mediation)
-  - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#AdMob)
-  - [DFP](https://github.com/applauseadn/android-sdk/blob/master/README.md#DFP)
-  - [MoPub](https://github.com/applauseadn/android-sdk/blob/master/README.md#MoPub)
+- [輪播(Mediation)](https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播mediation)
+  - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#admob)
+  - [DFP](https://github.com/applauseadn/android-sdk/blob/master/README.md#dfp)
+  - [MoPub](https://github.com/applauseadn/android-sdk/blob/master/README.md#mopub)
 - [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
 
 
