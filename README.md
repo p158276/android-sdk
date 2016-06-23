@@ -32,7 +32,7 @@
 
 ## 導入 SDK
 #### Android Studio
----
+----
 
 * 自動
     1. 修改 ```build.gradle``` 引入 ```VMFiveADNSDK Maven config```, ```Google GMS```，您的 ```build.gradle``` 最後應該看起來類似這樣：
@@ -79,7 +79,7 @@
         ```
 
 #### Eclipse
----
+----
 
 1. [下載最新版 SDK](https://github.com/applauseadn/android-sdk/releases)
 2. 將 SDK 的 JAR 檔拖至 ```libs``` 目錄下
@@ -133,7 +133,7 @@
 ## 廣告格式
 #### 卡片型原生影音廣告
 ###### Layout
----
+------
 您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
 <TODO - Layout example>
 
@@ -143,8 +143,8 @@
 例如我們的範例 App 就在 ```native_video_cta_border.xml``` 為 ```CTA Text``` 加上了邊框且指定 ```android:background="@drawable/native_video_cta_border"```。
 
 
-#### 初始化SDK
----
+###### 初始化SDK
+------
 在 ```Application``` 的進入點,呼叫 ```ADN.initialize``` 方法並且傳入 ```Context``` 和 ```API KEY``` 進行 SDK 的初始化。
 **在初始化時一定要填入正確的 ```API KEY``` ，否則無法取得線上販售的廣告獲得分潤。**
 
