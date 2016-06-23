@@ -4,14 +4,17 @@
   - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
   - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md#更新-androidmanifestxml)
-- [廣告型式]((https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告型式)
+- [廣告型式](https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告型式)
   - [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
     * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
     * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
     * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
   - [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#Listview-型原生影片廣告)
   - [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
-- [輪播(Mediation)]((https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播(Mediation))
+- [輪播(Mediation)](https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播(Mediation))
+  - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#AdMob)
+  - [DFP](https://github.com/applauseadn/android-sdk/blob/master/README.md#DFP)
+  - [MoPub](https://github.com/applauseadn/android-sdk/blob/master/README.md#MoPub)
 - [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
 
 
@@ -464,19 +467,19 @@ import com.core.adnsdk.AdPoolListener;
 
   蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
 
-#### AdMob
+#### [AdMob](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
 ----
-   * [AdMob, DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
-     * Banner
-     * interstital
-#### DFP
+    * [Banner](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobBanner.java)
+    * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobInterstitial.java)
+#### [DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
 ----
-  * DFP
-     * Banner
-     * interstital
+     * [Banner](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobBanner.java)
+     * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobInterstitial.java)
 #### MoPub
 ----
-   * [MoPub](https://github.com/applauseadn/android-sdk/tree/master/VMFiveMoPubAdapter)
+   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Interstitial.java)
+   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
+   * [Native Video](httpshttps://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
   
 
 
