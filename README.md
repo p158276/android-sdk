@@ -4,13 +4,15 @@
   - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
   - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md#更新-androidmanifestxml)
-- [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
-  * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
-  * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
-  * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
-* [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#Listview-型原生影片廣告)
-* [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
-* [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
+- [廣告型式]((https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告型式)
+  - [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
+    * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
+    * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
+    * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
+  - [ListView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#Listview-型原生影片廣告)
+  - [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
+- [輪播(Mediation)]((https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播(Mediation))
+- [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
 
 
 ## 概論
@@ -458,6 +460,26 @@ import com.core.adnsdk.AdPoolListener;
     }
     ```
 
+## 輪播(Mediation)
+
+  蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
+
+#### AdMob
+----
+   * [AdMob, DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
+     * Banner
+     * interstital
+#### DFP
+----
+  * DFP
+     * Banner
+     * interstital
+#### MoPub
+----
+   * [MoPub](https://github.com/applauseadn/android-sdk/tree/master/VMFiveMoPubAdapter)
+  
+
+
 ## 問題排解
 1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
 
@@ -485,11 +507,4 @@ import com.core.adnsdk.AdPoolListener;
     ```
     
     > 若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
-    
-3. 是否支援輪播(Mediation)
 
-   蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
-   
-   * [AdMob, DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
-   * [MoPub](https://github.com/applauseadn/android-sdk/tree/master/VMFiveMoPubAdapter)
-  
