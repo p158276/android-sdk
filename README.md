@@ -487,7 +487,7 @@ import com.core.adnsdk.AdPoolListener;
   * [Native Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
 
 ## Unity
-  串接 Card AdView 範例 [```UnityPlayerActivity```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveUnity/app/src/main/java/com/vmfive/javaunitysample/UnityPlayerActivity.java)
+  串接 Card AdView 範例 [```UnityPlayerActivity```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveUnity/UnityPlayerActivity.java)
   
   ``` java
   // 需要生成一個擺放 AdView 的 container, 最後透過 addContentView 加載到 UnityPlayer
