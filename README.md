@@ -490,6 +490,6 @@ import com.core.adnsdk.AdPoolListener;
 
    蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
    
-   [AdMob, DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
-   [MoPub](https://github.com/applauseadn/android-sdk/tree/master/VMFiveMoPubAdapter)
+   * [AdMob, DFP](https://github.com/applauseadn/android-sdk/tree/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork)
+   * [MoPub](https://github.com/applauseadn/android-sdk/tree/master/VMFiveMoPubAdapter)
   
