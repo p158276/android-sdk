@@ -474,6 +474,7 @@ import com.core.adnsdk.AdPoolListener;
 
 #### DFP
 ----
+  DFP 代碼撰寫方式與 AdMob 相同
   * [Banner](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobBanner.java)
   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/AdMobInterstitial.java)
 
@@ -483,8 +484,6 @@ import com.core.adnsdk.AdPoolListener;
   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
   * [Native Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
   
-
-
 ## 問題排解
 1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
 
