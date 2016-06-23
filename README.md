@@ -15,7 +15,7 @@
   - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#admob)
   - [DFP](https://github.com/applauseadn/android-sdk/blob/master/README.md#dfp)
   - [MoPub](https://github.com/applauseadn/android-sdk/blob/master/README.md#mopub)
-- [Unity](://github.com/applauseadn/android-sdk/blob/master/README.md#unity)
+- [Unity](https://github.com/applauseadn/android-sdk/blob/master/README.md#unity)
 - [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
 
 
