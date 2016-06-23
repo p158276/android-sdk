@@ -4,7 +4,7 @@
   - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
   - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md#更新-androidmanifestxml)
-- [廣告型式](https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告型式)
+- [廣告格式](https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告格式)
   - [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
     * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
     * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
@@ -130,8 +130,9 @@
     ```
     > 若開發者請求的廣告有包含影音檔, 該 Activity / Application 需要啟用 hardwareAccelerated, 否則無法觀看影片
 
-## 卡片型原生影音廣告
-#### Layout
+## 廣告格式
+#### 卡片型原生影音廣告
+###### Layout
 ---
 您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
 <TODO - Layout example>
@@ -162,7 +163,7 @@ public class MyApplication extends Application {
 }
 ```
 
-#### 載入並且展示原生影片廣告
+###### 載入並且展示原生影片廣告
 ---
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleCard.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleCard.java)
 
@@ -276,7 +277,7 @@ import com.core.adnsdk.ErrorMessage;
     }
     ```
     
-## ListView 型原生影片廣告
+#### ListView 型原生影片廣告
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleListView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleListView.java)
 
 ```java
@@ -376,7 +377,7 @@ import com.core.adnsdk.AdPoolListener;
     }
     ```
 
-## 影音插頁廣告(Interstitial)
+#### 影音插頁廣告(Interstitial)
 完整的程式碼請參考 [```MainActivity.java Interstitial fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
 
 1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告插頁廣告的 ```Actitivity ```
