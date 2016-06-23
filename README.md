@@ -15,6 +15,7 @@
   - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#admob)
   - [DFP](https://github.com/applauseadn/android-sdk/blob/master/README.md#dfp)
   - [MoPub](https://github.com/applauseadn/android-sdk/blob/master/README.md#mopub)
+- [Unity](://github.com/applauseadn/android-sdk/blob/master/README.md#unity)
 - [問題排解](https://github.com/applauseadn/android-sdk/blob/master/README.md#問題排解)
 
 
@@ -484,7 +485,16 @@ import com.core.adnsdk.AdPoolListener;
   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Interstitial.java)
   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
   * [Native Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
+
+## Unity
+  串接 Card AdView 範例 [```UnityPlayerActivity```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveUnity/UnityPlayerActivity.java)
   
+  ``` java
+  // 需要生成一個擺放 AdView 的 container, 最後透過 addContentView 加載到 UnityPlayer
+  ViewGroup.LayoutParams vlp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+	mUnityPlayer.currentActivity.getWindow().addContentView(mRelativeLayout, vlp);
+  ```
+
 ## 問題排解
 1. 影音廣告的影片, 有顯示CoverImage, 但播放影片時為黑屏
 
