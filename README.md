@@ -492,7 +492,7 @@ import com.core.adnsdk.AdPoolListener;
   ``` java
   // 需要生成一個擺放 AdView 的 container, 最後透過 addContentView 加載到 UnityPlayer
   ViewGroup.LayoutParams vlp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-	mUnityPlayer.currentActivity.getWindow().addContentView(mRelativeLayout, vlp);
+  mUnityPlayer.currentActivity.getWindow().addContentView(mRelativeLayout, vlp);
   ```
 
 ## 問題排解
