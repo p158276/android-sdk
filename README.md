@@ -482,6 +482,8 @@ import com.core.adnsdk.AdPoolListener;
 
 #### MoPub
 ----
+  請記得在 AndroidManifest.xml 宣告權限, 及所需的 activity
+  * [Banner](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Banner.java)
   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Interstitial.java)
   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
   * [Native Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
