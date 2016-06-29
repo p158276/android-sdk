@@ -174,6 +174,11 @@ public class VM5NativeVideo extends MoPubCustomEventVideoNative implements AdLis
         return false;
     }
 
+    @Override
+    public void onAdImpressed() {
+
+    }
+
     public void onResume() {
         if (mAdDelegator != null) {
             mAdDelegator.onResume();

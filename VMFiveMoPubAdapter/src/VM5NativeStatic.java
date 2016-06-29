@@ -238,6 +238,11 @@ public class VM5NativeStatic extends CustomEventNative {
             return false;
         }
 
+        @Override
+        public void onAdImpressed() {
+
+        }
+
         public void onResume() {
             if (mAdDelegator != null) {
                 mAdDelegator.onResume();

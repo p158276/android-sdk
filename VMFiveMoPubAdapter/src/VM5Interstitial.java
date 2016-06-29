@@ -125,6 +125,11 @@ public class VM5Interstitial extends CustomEventInterstitial implements AdListen
         return false;
     }
 
+    @Override
+    public void onAdImpressed() {
+
+    }
+
     public void onResume() {
         if (mAdInterstitial != null) {
             mAdInterstitial.onResume();
