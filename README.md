@@ -525,7 +525,7 @@ import com.core.adnsdk.AdPoolListener;
     
     > 若問題仍然存在, 可能是使用者已關閉權限, 可到 Settings / Application Info / your package name / read or write permission 手動啟用
 
-3. 如何在 release mode 印出 ADNSDN log
+3. 如何在 release mode 印出 ADNSDK log
 
     ``` java
     adb logcat -c
