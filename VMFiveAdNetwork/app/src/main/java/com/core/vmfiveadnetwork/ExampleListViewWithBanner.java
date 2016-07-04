@@ -24,8 +24,8 @@ import com.core.adnsdk.AdPoolListener;
 public class ExampleListViewWithBanner extends Activity {
     private static final String TAG = "ExampleListViewWithBanner";
 
-    private NativeAdAdapter mAdAdapter;
-    private AdView dynamicAdView;
+    private NativeAdAdapter mNativeAdAdapter;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +59,15 @@ public class ExampleListViewWithBanner extends Activity {
         final Context context = getApplication();
         // create NativeAdAdapter, and given original adapter of user
         // given a placement tag for different advertisement section
-        mAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list_banner)");
-        mAdAdapter.setAdRenderer(renderer, AdViewType.CARD_VIDEO); // for Video type
-        mAdAdapter.setTestMode(true); // for testing
-        mAdAdapter.setFrequency(1, 3);
+        mNativeAdAdapter = new NativeAdAdapter(this, listView, originalAdapter, "placement(list_banner)");
+        mNativeAdAdapter.setAdRenderer(renderer, AdViewType.CARD_VIDEO); // for Video type
+        mNativeAdAdapter.setTestMode(true); // for testing
+        mNativeAdAdapter.setFrequency(1, 3);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdPoolListenerAdapter}, default adapter design pattern of AdPoolListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        mAdAdapter.setAdListener(new AdPoolListener() {
+        mNativeAdAdapter.setAdListener(new AdPoolListener() {
             @Override
             public void onError(int index, ErrorMessage err) {
                 Log.d(TAG, "onError : " + err);
@@ -109,7 +109,7 @@ public class ExampleListViewWithBanner extends Activity {
         });
         // (Optional) sdk already set listener to ListView, if user want to set listener of ListView,
         // please set to NativeAdAdapter
-        mAdAdapter.setOnScrollListener(new AbsListView.OnScrollListener() {
+        mNativeAdAdapter.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
 
@@ -122,24 +122,24 @@ public class ExampleListViewWithBanner extends Activity {
         });
         // (Optional) sdk already set listener to ListView, if user want to set listener of ListView,
         // please set to NativeAdAdapter
-        mAdAdapter.setRecyclerListener(new AbsListView.RecyclerListener() {
+        mNativeAdAdapter.setRecyclerListener(new AbsListView.RecyclerListener() {
             @Override
             public void onMovedToScrapHeap(View view) {
 
             }
         });
-        listView.setAdapter(mAdAdapter);
+        listView.setAdapter(mNativeAdAdapter);
 
         ViewGroup adLayout = (ViewGroup) findViewById(R.id.example_adlayout);
 
         final AdViewType type;
         type = AdViewType.BANNER_VIDEO;
-        dynamicAdView = new AdView(this, "placement(banner_video)", type, adLayout);
+        mAdView = new AdView(this, "placement(banner_video)", type, adLayout);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        dynamicAdView.setAdListener(new AdListener() {
+        mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded(AdObject obj) {
                 Log.d(TAG, "onAdLoaded(" + obj + ")");
@@ -180,41 +180,41 @@ public class ExampleListViewWithBanner extends Activity {
             }
         });
 
-        dynamicAdView.setTestMode(true);
-        dynamicAdView.loadAd();
+        mAdView.setTestMode(true);
+        mAdView.loadAd();
     }
 
     @Override
     protected void onPause() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onPause();
+        if (mAdView != null) {
+            mAdView.onPause();
         }
-        if (mAdAdapter != null) {
-            mAdAdapter.onPause();
+        if (mNativeAdAdapter != null) {
+            mNativeAdAdapter.onPause();
         }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onResume();
+        if (mAdView != null) {
+            mAdView.onResume();
         }
-        if (mAdAdapter != null) {
-            mAdAdapter.onResume();
+        if (mNativeAdAdapter != null) {
+            mNativeAdAdapter.onResume();
         }
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onDestroy();
-            dynamicAdView = null;
+        if (mAdView != null) {
+            mAdView.onDestroy();
+            mAdView = null;
         }
-        if (mAdAdapter != null) {
-            mAdAdapter.onDestroy();
-            mAdAdapter = null;
+        if (mNativeAdAdapter != null) {
+            mNativeAdAdapter.onDestroy();
+            mNativeAdAdapter = null;
         }
         super.onDestroy();
     }

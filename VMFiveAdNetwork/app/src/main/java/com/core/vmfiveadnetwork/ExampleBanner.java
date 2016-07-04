@@ -9,8 +9,6 @@ import android.widget.Toast;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
 import com.core.adnsdk.BannerAdRenderer;
-import com.core.adnsdk.CardAdRenderer;
-import com.core.adnsdk.CardViewBinder;
 import com.core.adnsdk.ErrorMessage;
 import com.core.adnsdk.AdViewType;
 import com.core.adnsdk.BannerViewBinder;
@@ -19,7 +17,7 @@ import com.core.adnsdk.AdView;
 public class ExampleBanner extends FragmentActivity {
     private static final String TAG = "ExampleBanner";
 
-    private AdView dynamicAdView;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +36,12 @@ public class ExampleBanner extends FragmentActivity {
 
         // set layout builder to renderer
         BannerAdRenderer renderer = new BannerAdRenderer(binder);
-        dynamicAdView = new AdView(this, "placement(banner_video)", adViewType, renderer, adLayout);
+        mAdView = new AdView(this, "placement(banner_video)", adViewType, renderer, adLayout);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        dynamicAdView.setAdListener(new AdListener() {
+        mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded(AdObject obj) {
                 Log.d(TAG, "onAdLoaded(" + obj + ")");
@@ -83,32 +81,32 @@ public class ExampleBanner extends FragmentActivity {
                 Log.d(TAG, "onAdImpressed.");
             }
         });
-        //adLayout.addView(dynamicAdView);
-        dynamicAdView.setTestMode(true);
-        dynamicAdView.loadAd();
+        //adLayout.addView(mAdView);
+        mAdView.setTestMode(true);
+        mAdView.loadAd();
     }
 
     @Override
     protected void onPause() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onPause();
+        if (mAdView != null) {
+            mAdView.onPause();
         }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onResume();
+        if (mAdView != null) {
+            mAdView.onResume();
         }
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        if (dynamicAdView != null) {
-            dynamicAdView.onDestroy();
-            dynamicAdView = null;
+        if (mAdView != null) {
+            mAdView.onDestroy();
+            mAdView = null;
         }
         super.onDestroy();
     }

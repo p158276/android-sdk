@@ -19,7 +19,7 @@ import com.core.adnsdk.ErrorMessage;
 public class ExampleCustom extends FragmentActivity {
     private static final String TAG = "ExampleCustom";
 
-    private AdCustom mNativeAd;
+    private AdCustom mAdCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,12 @@ public class ExampleCustom extends FragmentActivity {
         CardAdRenderer renderer = new CardAdRenderer(binder);
 
         final ViewGroup mainContainer = (ViewGroup) findViewById(R.id.example_adlayout);
-        mNativeAd = new AdCustom(this, "placement(custom)", renderer, mainContainer);
+        mAdCustom = new AdCustom(this, "placement(custom)", renderer, mainContainer);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        mNativeAd.setAdListener(new AdListener() {
+        mAdCustom.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded(AdObject ad) {
                 Log.d(TAG, "onAdLoaded(" + ad + ")");
@@ -86,31 +86,31 @@ public class ExampleCustom extends FragmentActivity {
                 Log.d(TAG, "onAdImpressed.");
             }
         });
-        mNativeAd.setTestMode(true);
-        mNativeAd.loadAd();
+        mAdCustom.setTestMode(true);
+        mAdCustom.loadAd();
     }
 
     @Override
     protected void onResume() {
-        if (mNativeAd != null) {
-            mNativeAd.onResume();
+        if (mAdCustom != null) {
+            mAdCustom.onResume();
         }
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        if (mNativeAd != null) {
-            mNativeAd.onPause();
+        if (mAdCustom != null) {
+            mAdCustom.onPause();
         }
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        if (mNativeAd != null) {
-            mNativeAd.onDestroy();
-            mNativeAd = null;
+        if (mAdCustom != null) {
+            mAdCustom.onDestroy();
+            mAdCustom = null;
         }
         super.onDestroy();
     }

@@ -101,7 +101,7 @@ public class AdMobInterstitial implements CustomEventInterstitial {
 
             @Override
             public void onAdImpressed() {
-
+                Log.d(TAG, "onAdImpressed.");
             }
         });
         adInterstitial.loadAd();

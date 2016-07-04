@@ -22,7 +22,7 @@ import com.core.adnsdk.AdView;
 public class AdMobBanner implements CustomEventBanner {
     private final static String TAG = "AdMobBanner";
 
-    private AdView adView;
+    private AdView mAdView;
 
     @Override
     public void requestBannerAd(final Context context, final CustomEventBannerListener customEventBannerListener,
@@ -30,21 +30,21 @@ public class AdMobBanner implements CustomEventBanner {
 
         AdViewType adViewType = AdViewType.BANNER_VIDEO;
 
-        if (adView == null) {
-            adView = new AdView((Activity)context, "placement(banner_admob)", adViewType);
+        if (mAdView == null) {
+            mAdView = new AdView((Activity)context, "placement(banner_admob)", adViewType);
         }
 
-        adView.setTestMode(true);
-        adView.setRotationTimeUnit(TimeUnit.STOP);
+        mAdView.setTestMode(true);
+        mAdView.setRotationTimeUnit(TimeUnit.STOP);
         /**
          * Users are also capable of using {@link com.core.adnsdk.AdListenerAdapter}, default adapter design pattern of AdListener, to receive notification.
          * Therefore, users can focus on specific events they care about.
          */
-        adView.setAdListener(new AdListener() {
+        mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded(AdObject obj) {
                 Log.i(TAG, "onAdLoaded(" + obj + ")");
-                customEventBannerListener.onAdLoaded(adView);
+                customEventBannerListener.onAdLoaded(mAdView);
             }
 
             @Override
@@ -95,28 +95,28 @@ public class AdMobBanner implements CustomEventBanner {
 
             }
         });
-        adView.loadAd();
+        mAdView.loadAd();
     }
 
     @Override
     public void onDestroy() {
-        if (adView != null) {
-            adView.onDestroy();
-            adView = null;
+        if (mAdView != null) {
+            mAdView.onDestroy();
+            mAdView = null;
         }
     }
 
     @Override
     public void onPause() {
-        if (adView != null) {
-            adView.onPause();
+        if (mAdView != null) {
+            mAdView.onPause();
         }
     }
 
     @Override
     public void onResume() {
-        if (adView != null) {
-            adView.onResume();
+        if (mAdView != null) {
+            mAdView.onResume();
         }
     }
 }

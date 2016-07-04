@@ -9,13 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.core.adnsdk.AdBaseSpec;
 import com.core.adnsdk.AdViewType;
 import com.core.adnsdk.AdObject;
 import com.core.adnsdk.AdPoolListener;
 import com.core.adnsdk.ErrorMessage;
+import com.core.adnsdk.RecyclerAdRenderer;
 import com.core.adnsdk.RecyclerCardAdRenderer;
 import com.core.adnsdk.RecyclerAdapter;
 import com.core.adnsdk.RecyclerCardViewBinder;
@@ -40,6 +43,19 @@ public class ExampleRecyclerView extends Activity {
         for (int i = 0; i < 100; ++i) {
             data.add("Item " + i);
         }
+        DemoAdapter originalAdapter = new DemoAdapter(data);
+
+        /*
+        final ArrayList<ListViewItem> items = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            if (i % 2 != 0) {
+                items.add(new ListViewItem("ODD " + i, CustomAdapter.TYPE_ODD));
+            } else {
+                items.add(new ListViewItem("EVEN " + i, CustomAdapter.TYPE_EVEN));
+            }
+        }
+        CustomAdapter originalAdapter = new CustomAdapter(items);
+        */
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -59,9 +75,9 @@ public class ExampleRecyclerView extends Activity {
         RecyclerCardAdRenderer renderer = new RecyclerCardAdRenderer(binder);
 
         final Context context = getApplication();
-        // create NativeAdAdapter, and given original adapter of user
+        // create RecyclerAdapter, and given original adapter of user
         // given a placement tag for different advertisement section
-        mRecyclerAdapter = new RecyclerAdapter(this, recyclerView, new DemoAdapter(data), "placement(recycler)");
+        mRecyclerAdapter = new RecyclerAdapter(this, recyclerView, originalAdapter, "placement(recycler)");
         mRecyclerAdapter.setAdRenderer(renderer, AdViewType.CARD_VIDEO); // for Video type
         mRecyclerAdapter.setTestMode(true); // for testing
         mRecyclerAdapter.setFrequency(1, 3);
@@ -178,6 +194,101 @@ public class ExampleRecyclerView extends Activity {
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
+            }
+        }
+    }
+
+    public class ListViewItem {
+        private String text;
+        private int type;
+
+        public ListViewItem(String text, int type) {
+            this.text = text;
+            this.type = type;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+    }
+
+    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHolder> {
+        public static final int TYPE_ODD = 0;
+        public static final int TYPE_EVEN = 1;
+
+        private List<ListViewItem> mItemData;
+
+        public CustomAdapter(List<ListViewItem> data) {
+            this.mItemData = data;
+        }
+
+        @Override
+        public CustomAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            CustomAdapter.ItemViewHolder vh;
+            View v;
+            switch (viewType) {
+                case TYPE_ODD:
+                    v = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.layout_odd, parent, false);
+                    vh = new CustomAdapter.ItemViewHolder(v);
+                    vh.text = (TextView) v.findViewById(R.id.text);
+                    break;
+                default:
+                    v = LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.layout_even, parent, false);
+                    vh = new CustomAdapter.ItemViewHolder(v);
+                    vh.text = (TextView) v.findViewById(R.id.text);
+            }
+            return vh;
+        }
+
+        @Override
+        public void onBindViewHolder(CustomAdapter.ItemViewHolder holder, int position) {
+            switch (holder.getItemViewType()) {
+                case TYPE_ODD:
+                    holder.text.setText(mItemData.get(position).getText());
+                    break;
+                default:
+                    holder.text.setText(mItemData.get(position).getText());
+            }
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return mItemData.get(position).getType();
+        }
+
+        @Override
+        public int getItemCount() {
+            return mItemData.size();
+        }
+
+        // view holder pattern
+        class ItemViewHolder extends RecyclerView.ViewHolder {
+            TextView text;
+
+            public ItemViewHolder(View itemView) {
+                super(itemView);
+            }
+
+            public TextView getText() {
+                return text;
+            }
+
+            public void setText(TextView text) {
+                this.text = text;
             }
         }
     }
