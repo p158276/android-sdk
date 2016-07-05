@@ -388,9 +388,46 @@ import com.core.adnsdk.AdPoolListener;
     <activity
         android:name="com.core.adnsdk.InterstitialActivity"
         android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+        android:theme="@style/Theme.Transparent">
     </activity>
     ```
+    
+    * style/Theme.Transparent
+    
+    ```java
+    <resources>
+
+        <!--
+            Base application theme, dependent on API level. This theme is replaced
+            by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        -->
+        <style name="AppBaseTheme" parent="android:Theme.Light">
+            <!--
+                Theme customizations available in newer API levels can go in
+                res/values-vXX/styles.xml, while customizations related to
+                backward-compatibility can go here.
+            -->
+        </style>
+    
+        <!-- Application theme. -->
+        <style name="AppTheme" parent="AppBaseTheme">
+            <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        </style>
+    
+        <style name="Theme.Transparent" parent="android:Theme">
+            <item name="android:windowIsTranslucent">true</item>
+            <item name="android:windowBackground">@android:color/transparent</item>
+            <item name="android:windowContentOverlay">@null</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="android:windowIsFloating">true</item>
+            <item name="android:backgroundDimEnabled">false</item>
+        </style>
+    
+    </resources>
+
+    ```
+    
     * 轉橫屏全螢幕播放的 ```Activity```:
   
     ```java
@@ -467,7 +504,7 @@ import com.core.adnsdk.AdPoolListener;
 
 ## 輪播(Mediation)
 
-  蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播.
+  蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播. 串接前請記得在 AndroidManifest.xml 宣告權限, 及所需的 activity
 
 #### AdMob
 ----
@@ -482,7 +519,6 @@ import com.core.adnsdk.AdPoolListener;
 
 #### MoPub
 ----
-  請記得在 AndroidManifest.xml 宣告權限, 及所需的 activity
   * [Banner](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Banner.java)
   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Interstitial.java)
   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
