@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -125,6 +126,14 @@ public class ExampleListViewWithBanner extends Activity {
         mNativeAdAdapter.setRecyclerListener(new AbsListView.RecyclerListener() {
             @Override
             public void onMovedToScrapHeap(View view) {
+
+            }
+        });
+        // (Optional) sdk already set listener to ListView, if user want to set listener of ListView,
+        // please set to NativeAdAdapter
+        mNativeAdAdapter.setOnItemClickListener(new AbsListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
