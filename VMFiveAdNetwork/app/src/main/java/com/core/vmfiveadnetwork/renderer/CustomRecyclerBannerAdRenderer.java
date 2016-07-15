@@ -16,7 +16,6 @@
 
 package com.core.vmfiveadnetwork.renderer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -55,8 +54,8 @@ public class CustomRecyclerBannerAdRenderer implements RecyclerAdRenderer {
     }
 
     @Override
-    public void init(Activity activity) {
-        WindowManager window = (WindowManager)activity.getSystemService(Context.WINDOW_SERVICE);
+    public void init(Context context) {
+        WindowManager window = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Display display = window.getDefaultDisplay();
         Point dimension = new Point();
         display.getSize(dimension);
@@ -65,8 +64,8 @@ public class CustomRecyclerBannerAdRenderer implements RecyclerAdRenderer {
     }
 
     @Override
-    public View createAdView(Activity activity, ViewGroup parent, AdBaseSpec baseSpec) {
-        View view = LayoutInflater.from(activity).inflate(mBannerViewBinder.layoutId, parent, false);
+    public View createAdView(Context context, ViewGroup parent, AdBaseSpec baseSpec) {
+        View view = LayoutInflater.from(context).inflate(mBannerViewBinder.layoutId, parent, false);
         RecyclerBannerViewHolder holder = RecyclerBannerViewHolder.createFromBinder(view, mBannerViewBinder);
         view.setTag(holder);
         if (holder.videoPlayer != null) {

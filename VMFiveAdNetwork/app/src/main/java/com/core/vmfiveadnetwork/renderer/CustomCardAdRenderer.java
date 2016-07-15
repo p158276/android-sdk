@@ -1,6 +1,6 @@
 package com.core.vmfiveadnetwork.renderer;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
@@ -36,13 +36,13 @@ public class CustomCardAdRenderer implements AdRenderer {
     }
 
     @Override
-    public void init(Activity activity) {
+    public void init(Context context) {
 
     }
 
     @Override
-    public View createAdView(Activity activity, ViewGroup parent, AdBaseSpec baseSpec) {
-        View view = LayoutInflater.from(activity).inflate(mCardViewBinder.layoutId, parent, false);
+    public View createAdView(Context context, ViewGroup parent, AdBaseSpec baseSpec) {
+        View view = LayoutInflater.from(context).inflate(mCardViewBinder.layoutId, parent, false);
         CardViewHolder holder = CardViewHolder.createFromBinder(view, mCardViewBinder);
         view.setTag(holder);
         if (holder.callToActionTextView != null) {
