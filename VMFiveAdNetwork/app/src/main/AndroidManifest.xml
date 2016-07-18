@@ -83,6 +83,13 @@
         </activity>
 
         <activity
+            android:name="com.core.adnsdk.RewardActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:screenOrientation="landscape"
+            android:hardwareAccelerated="true">
+        </activity>
+
+        <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:hardwareAccelerated="true"/>
