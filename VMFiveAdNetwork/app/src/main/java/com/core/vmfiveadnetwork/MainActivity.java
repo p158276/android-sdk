@@ -46,7 +46,9 @@ import com.core.adnsdk.AdInterstitial;
 import com.core.adnsdk.AdInterstitialType;
 import com.core.adnsdk.AdListener;
 import com.core.adnsdk.AdObject;
-
+import com.core.adnsdk.AdReward;
+import com.core.adnsdk.AdRewardListener;
+import com.core.adnsdk.AdRewardType;
 import com.core.adnsdk.ErrorMessage;
 import com.core.adnsdk.SDKController;
 
@@ -220,6 +222,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 case 3:
                     return Native.getInstance();
                 case 4:
+                    return Reward.getInstance();
+                case 5:
                     return Other.getInstance();
 
                 default:
@@ -234,7 +238,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public int getCount() {
-            return 5;
+            return 6;
         }
 
         @Override
@@ -249,6 +253,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 case 3:
                     return mContext.getString(R.string.native_title);
                 case 4:
+                    return mContext.getString(R.string.reward_title);
+                case 5:
                     return mContext.getString(R.string.other_title);
                 default:
                     return "Section " + (position + 1);
@@ -497,6 +503,128 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             ((TextView) rootView.findViewById(android.R.id.text1)).setText(
                     getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
             return rootView;
+        }
+    }
+
+    /**
+     * A fragment that launches other parts of the demo application.
+     */
+    public static class Reward extends Fragment {
+
+        public static Fragment getInstance() {
+            return new Reward();
+        }
+
+        private AdReward mAdReward;
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mAdReward = new AdReward(
+                    getActivity(),
+                    "placement(reward_video)",
+                    AdRewardType.REWARD_VIDEO);
+            mAdReward.setTestMode(true);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_reward, container, false);
+
+            rootView.findViewById(R.id.reward_video)
+                    .setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View view) {
+                            /**
+                             * Users are also capable of using {@link com.core.adnsdk.AdRewardListenerAdapter}, default adapter design pattern of AdRewardListener, to receive notification.
+                             * Therefore, users can focus on specific events they care about.
+                             */
+                            mAdReward.setAdListener(new AdRewardListener() {
+                                @Override
+                                public void onAdLoaded(AdObject obj) {
+                                    Log.d(TAG, "onAdLoaded(" + obj + ")");
+                                    mAdReward.showAd();
+                                }
+
+                                @Override
+                                public void onError(ErrorMessage err) {
+                                    Log.d(TAG, "onError : " + err + ")");
+                                    Toast.makeText(view.getContext(), "Error: " + err, Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void onAdClicked() {
+                                    Log.d(TAG, "onAdClicked!");
+                                }
+
+                                @Override
+                                public void onAdFinished() {
+                                    Log.d(TAG, "onAdFinished.");
+                                }
+
+                                @Override
+                                public void onAdReleased() {
+                                    Log.d(TAG, "onAdReleased.");
+                                }
+
+                                @Override
+                                public boolean onAdWatched() {
+                                    Log.d(TAG, "onAdWatched.");
+                                    return false;
+                                }
+
+                                @Override
+                                public void onAdImpressed() {
+                                    Log.d(TAG, "onAdImpressed.");
+                                }
+
+                                @Override
+                                public void onAdRewarded(String currency, double amount) {
+                                    Log.d(TAG, "onAdRewarded.");
+                                    Toast.makeText(view.getContext(), "Got reward: currency: " + currency + ", amount: " + amount, Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void onAdReplayed() {
+                                    Log.d(TAG, "onAdReplayed.");
+                                }
+
+                                @Override
+                                public void onAdClosed() {
+                                    Log.d(TAG, "onAdClosed.");
+                                }
+                            });
+                            mAdReward.loadAd();
+                        }
+                    });
+
+            return rootView;
+        }
+
+        @Override
+        public void onResume() {
+            if (mAdReward != null) {
+                mAdReward.onResume();
+            }
+            super.onResume();
+        }
+
+        @Override
+        public void onPause() {
+            if (mAdReward != null) {
+                mAdReward.onPause();
+            }
+            super.onPause();
+        }
+
+        @Override
+        public void onDestroy() {
+            if (mAdReward != null) {
+                mAdReward.onDestroy();
+                mAdReward = null;
+            }
+            super.onDestroy();
         }
     }
 
