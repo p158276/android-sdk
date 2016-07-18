@@ -141,7 +141,7 @@
 文字和圖片等素材使用標準的 ```TextView``` 和 ```ImageView``` 呈現即可，但**用來播放影音廣告的元件請務必使用 ```com.core.adnsdk.VideoPlayer```**。
 
 另外需要注意的是 -  CTA 文字需要設定 ```Background``` 屬性，**好提高廣告成效並取得更佳的分潤**。
-例如我們的範例 App 就在 ```native_video_cta_border.xml``` 為 ```CTA Text``` 加上了邊框且指定 ```android:background="@drawable/native_video_cta_border"```。
+例如我們的範例 App 就在 ```native_video_cta_border.xml``` 為 ```CTA Text``` 加上了邊框且指定 [```android:background="@drawable/native_video_cta_border"```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/drawable/native_video_cta_border.xml)。
 
 
 ###### 初始化SDK
