@@ -502,6 +502,22 @@ import com.core.adnsdk.AdPoolListener;
     }
     ```
 
+## 客製化 Renderer
+
+  以客製化 Card 廣告格式為例, 使用者可以修改 [CustomCardAdRenderer.java](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/renderer/CustomCardAdRenderer.java) 並將此 renderer 傳入
+  
+  使用者可以客製化 renderer, 例如動態創建廣告格式, 或是顯示動畫等
+  
+  1. 關閉全屏播放選項
+  ```java
+  videoLayout.setExpandEnabled(false);
+  ```
+
+  2. 關閉倒數計時選項
+  ```java
+  videoLayout.setCountDownEnabled(false);
+  ```
+
 ## 輪播(Mediation)
 
   蓋版影音廣告(Video Interstitial)可支援AdMob,DFP,和Mopub輪播.原生影音廣告(Native Video Ad)目前只支援Mopub輪播. 串接前請記得在 AndroidManifest.xml 宣告權限, 及所需的 activity
