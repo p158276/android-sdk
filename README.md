@@ -11,6 +11,7 @@
     * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
   - [ListView/RecyclerView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#listviewrecyclerview-型原生影片廣告)
   - [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
+  - [獎勵型廣告(Reward)](https://github.com/applauseadn/android-sdk/blob/master/README.md#獎勵型廣告Reward)
 - [客製化 Renderer](https://github.com/applauseadn/android-sdk/blob/master/README.md#客製化-renderer)
 - [輪播(Mediation)](https://github.com/applauseadn/android-sdk/blob/master/README.md#輪播mediation)
   - [AdMob](https://github.com/applauseadn/android-sdk/blob/master/README.md#admob)
