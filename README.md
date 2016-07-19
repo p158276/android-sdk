@@ -506,7 +506,7 @@ import com.core.adnsdk.AdPoolListener;
 #### 獎勵型廣告(Reward)
 完整的程式碼請參考 [```MainActivity.java Reward fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
 
-1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告插頁廣告的 ```Actitivity ```
+1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告獎勵廣告的 ```Actitivity ```
     * 橫屏的 ```Activity```：
   
     ```java
@@ -520,7 +520,7 @@ import com.core.adnsdk.AdPoolListener;
 
 2. 創建 ```mAdReward``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
 
-    ```AdInterstitialType.REWARD_VIDEO```
+    ```AdRewardType.REWARD_VIDEO```
       
     ```java
     mAdReward = new AdReward(context, "placement(reward_video)",  AdRewardType.REWARD_VIDEO) ;
@@ -557,7 +557,7 @@ import com.core.adnsdk.AdPoolListener;
 
     ```mAdReward.showAd(); ```
 
-7. 處理插頁廣告的 Life Cycle，釋放資源
+7. 處理獎勵廣告的 Life Cycle，釋放資源
 
     ```java
     @Override
