@@ -521,7 +521,6 @@ import com.core.adnsdk.AdPoolListener;
 2. 創建 ```mAdReward``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
 
     ```AdRewardType.REWARD_VIDEO```
-      
     ```java
     mAdReward = new AdReward(context, "placement(reward_video)",  AdRewardType.REWARD_VIDEO) ;
     ```
