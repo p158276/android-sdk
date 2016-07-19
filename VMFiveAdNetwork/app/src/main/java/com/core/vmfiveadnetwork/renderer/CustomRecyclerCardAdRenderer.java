@@ -42,7 +42,7 @@ import java.util.HashMap;
  * Created by ChanYiChih on 2016/5/9.
  */
 public class CustomRecyclerCardAdRenderer implements RecyclerAdRenderer {
-    private static final String TAG = "RecyclerCardAdRenderer";
+    private static final String TAG = "CustomRecyclerCardAdRenderer";
 
     private ImageView.ScaleType mCoverImageScaleType = ImageView.ScaleType.CENTER_CROP;
     private final RecyclerCardViewBinder mCardViewBinder;

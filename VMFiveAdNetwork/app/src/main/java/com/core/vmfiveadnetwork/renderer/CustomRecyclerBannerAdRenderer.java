@@ -42,7 +42,7 @@ import java.util.HashMap;
  * Created by ChanYiChih on 2016/5/9.
  */
 public class CustomRecyclerBannerAdRenderer implements RecyclerAdRenderer {
-    private static final String TAG = "RecyclerBannerAdRenderer";
+    private static final String TAG = "CustomRecyclerBannerAdRenderer";
 
     private ImageView.ScaleType mCoverImageScaleType = ImageView.ScaleType.CENTER_CROP;
     private final RecyclerBannerViewBinder mBannerViewBinder;

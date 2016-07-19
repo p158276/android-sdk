@@ -26,7 +26,7 @@ import java.util.HashMap;
  * Created by ChanYiChih on 2016/5/9.
  */
 public class CustomCardAdRenderer implements AdRenderer {
-    private static final String TAG = "CardAdRenderer";
+    private static final String TAG = "CustomCardAdRenderer";
 
     private ImageView.ScaleType mCoverImageScaleType = ImageView.ScaleType.CENTER_CROP;
     private final CardViewBinder mCardViewBinder;
