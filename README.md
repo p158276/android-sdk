@@ -426,7 +426,6 @@ import com.core.adnsdk.AdPoolListener;
         </style>
     
     </resources>
-
     ```
     
     * 轉橫屏全螢幕播放的 ```Activity```:
@@ -439,17 +438,17 @@ import com.core.adnsdk.AdPoolListener;
         android:hardwareAccelerated="true">
     </activity>
     ```
-2. 創建 ```adInterstitial``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
+2. 創建 ```mAdInterstitial``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
 
     ```AdInterstitialType.INTERSTITIAL_VIDEO ```
       
     ```java
-    adInterstitial = new AdInterstitial(context, "placement(interstitial)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
+    mAdInterstitial = new AdInterstitial(context, "placement(interstitial)",  AdInterstitialType.INTERSTITIAL_VIDEO) ;
     ```
 
 3. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
 
-    ```adInterstitial.setTestMode(true); ```
+    ```mAdInterstitial.setTestMode(true); ```
 
 4. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
 
@@ -468,36 +467,118 @@ import com.core.adnsdk.AdPoolListener;
 
 5. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
 
-    ```adInterstitial.loadAd(); ```
+    ```mAdInterstitial.loadAd(); ```
     
 6. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
 
-    ```adInterstitial.showAd(); ```
+    ```mAdInterstitial.showAd(); ```
 
 7. 處理插頁廣告的 Life Cycle，釋放資源
 
     ```java
     @Override
     public void onResume() {
-        if (adInterstitial != null) {
-            adInterstitial.onResume();
+        if (mAdInterstitial != null) {
+            mAdInterstitial.onResume();
         }
         super.onResume();
     }
     
     @Override
     public void onPause() {
-        if (adInterstitial != null) {
-            adInterstitial.onPause();
+        if (mAdInterstitial != null) {
+            mAdInterstitial.onPause();
         }
         super.onPause();
     }
     
     @Override
     public void onDestroy() {
-        if (adInterstitial != null) {
-            adInterstitial.onDestroy();
-            adInterstitial = null;
+        if (mAdInterstitial != null) {
+            mAdInterstitial.onDestroy();
+            mAdInterstitial = null;
+        }
+        super.onDestroy();
+    }
+    ```
+
+#### 獎勵型廣告(Reward)
+完整的程式碼請參考 [```MainActivity.java Reward fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
+
+1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告插頁廣告的 ```Actitivity ```
+    * 橫屏的 ```Activity```：
+  
+    ```java
+    <activity
+        android:name="com.core.adnsdk.RewardActivity"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+        android:screenOrientation="landscape"
+        android:hardwareAccelerated="true">
+    </activity>
+    ```
+
+2. 創建 ```mAdReward``` 物件，需要傳入三個參數: Context, 一個任意字串 , 以及指定廣告類型為
+
+    ```AdInterstitialType.REWARD_VIDEO```
+      
+    ```java
+    mAdReward = new AdReward(context, "placement(reward_video)",  AdRewardType.REWARD_VIDEO) ;
+    ```
+
+3. 設定測試模式 - 在測試時請開啟測試模式，**測試完成上線前請務必設定成 false 關閉測試模式以免無法取得分潤.**
+
+    ```mAdReward.setTestMode(true); ```
+
+4. 實作 ```AdListener()```，各個 ```callback``` 的定義如下：
+
+    ```java
+    public interface AdRewardListener {
+        void onAdLoaded(AdObject adObject); // 廣告完成載入
+        void onError(ErrorMessage err); // SDK 出現錯誤
+        void onAdClicked(); //廣告被點擊
+        void onAdFinished(); //廣告點擊完成跳轉後
+        void onAdReleased(); //廣告完成卸載並且釋放所有資源
+        boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
+        void onAdImpressed(); //廣告曝光
+        void onAdRewarded(String currency, double amount); //獎勵廣告
+        void onAdReplayed(); //重新播放
+        void onAdClosed(); //廣告被關閉
+    }
+    ```
+    > 建議使用 AdRewardListenerAdapter, 可以只實作一部份的 event callbacks
+
+5. 載入廣告，載入完成後 SDK 會呼叫 ```onAdLoaded```
+
+    ```mAdReward.loadAd(); ```
+    
+6. 確定廣告已經載入完成後(可用 ```onAdLoaded``` 追蹤)後，展示廣告
+
+    ```mAdReward.showAd(); ```
+
+7. 處理插頁廣告的 Life Cycle，釋放資源
+
+    ```java
+    @Override
+    public void onResume() {
+        if (mAdReward != null) {
+            mAdReward.onResume();
+        }
+        super.onResume();
+    }
+    
+    @Override
+    public void onPause() {
+        if (mAdReward != null) {
+            mAdReward.onPause();
+        }
+        super.onPause();
+    }
+    
+    @Override
+    public void onDestroy() {
+        if (mAdReward != null) {
+            mAdReward.onDestroy();
+            mAdReward = null;
         }
         super.onDestroy();
     }
