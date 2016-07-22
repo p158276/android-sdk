@@ -541,9 +541,9 @@ import com.core.adnsdk.AdPoolListener;
         void onAdReleased(); //廣告完成卸載並且釋放所有資源
         boolean onAdWatched(); //影片播放完畢，要自動載入下一檔廣告請回傳 true，否則回傳 false
         void onAdImpressed(); //廣告曝光
-        **void onAdRewarded(String currency, double amount); //獎勵廣告**
-        **void onAdReplayed(); //重新播放**
-        **void onAdClosed(); //廣告被關閉**
+        void onAdRewarded(String currency, double amount); //獎勵廣告
+        void onAdReplayed(); //重新播放
+        void onAdClosed(); //廣告被關閉
     }
     ```
     > 建議使用 AdRewardListenerAdapter, 可以只實作一部份的 event callbacks
