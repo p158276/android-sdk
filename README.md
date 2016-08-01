@@ -168,6 +168,9 @@ public class MyApplication extends Application {
 
 ###### 載入並且展示原生影片廣告
 ---
+<p align="center">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
+</p>
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleCard.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleCard.java)
 
 ```java
@@ -281,6 +284,9 @@ import com.core.adnsdk.ErrorMessage;
     ```
     
 #### ListView/RecyclerView 型原生影片廣告
+<p align="center">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Native.png?raw=true" alt="Video_Native" width="216" height="384">
+</p>
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleListView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleListView.java), [```ExampleRecyclerView.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleRecyclerView.java), 以下舉 ListView 例子說明
 
 ```java
@@ -381,6 +387,9 @@ import com.core.adnsdk.AdPoolListener;
     ```
 
 #### 影音插頁廣告(Interstitial)
+<p align="center">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Interstitial.png?raw=true" alt="Video_Interstitial" width="216" height="384">
+</p>
 完整的程式碼請參考 [```MainActivity.java Interstitial fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
 
 1. 在開始撰寫程式碼之前,請先在 ```AndroidManifest.xml``` 中宣告插頁廣告的 ```Actitivity ```
