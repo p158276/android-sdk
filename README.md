@@ -4,10 +4,10 @@
   - [Android Studio](https://github.com/applauseadn/android-sdk/blob/master/README.md#android-studio)
   - [Eclipse](https://github.com/applauseadn/android-sdk/blob/master/README.md#eclipse)
 - [更新 AndroidManifest.xml](https://github.com/applauseadn/android-sdk/blob/master/README.md#更新-androidmanifestxml)
+- [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
 - [廣告格式](https://github.com/applauseadn/android-sdk/blob/master/README.md#廣告格式)
   - [卡片型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#卡片型原生影音廣告)
     * [Layout](https://github.com/applauseadn/android-sdk/blob/master/README.md#layout)
-    * [初始化 SDK](https://github.com/applauseadn/android-sdk/blob/master/README.md#初始化sdk)
     * [載入並且展示原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#載入並且展示原生影片廣告)
   - [ListView/RecyclerView 型原生影音廣告](https://github.com/applauseadn/android-sdk/blob/master/README.md#listviewrecyclerview-型原生影片廣告)
   - [影音插頁廣告(Interstitial)](https://github.com/applauseadn/android-sdk/blob/master/README.md#影音插頁廣告interstitial)
@@ -133,24 +133,7 @@
     ```
     > 若開發者請求的廣告有包含影音檔, 該 Activity / Application 需要啟用 hardwareAccelerated, 否則無法觀看影片
 
-## 廣告格式
-#### 卡片型原生影音廣告
-<p align="center">
-<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
-</p>
-###### Layout
-------
-您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
-<TODO - Layout example>
-
-文字和圖片等素材使用標準的 ```TextView``` 和 ```ImageView``` 呈現即可，但**用來播放影音廣告的元件請務必使用 ```com.core.adnsdk.VideoPlayer```**。
-
-另外需要注意的是 -  CTA 文字需要設定 ```Background``` 屬性，**好提高廣告成效並取得更佳的分潤**。
-例如我們的範例 App 就在 [```native_video_cta_border.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/drawable/native_video_cta_border.xml) 為 ```CTA Text``` 加上了邊框且指定 ```android:background="@drawable/native_video_cta_border"```。
-
-
-###### 初始化SDK
-------
+## 初始化SDK
 在 ```Application``` 的進入點,呼叫 ```ADN.initialize``` 方法並且傳入 ```Context``` 和 ```API KEY``` 進行 SDK 的初始化。
 **在初始化時一定要填入正確的 ```API KEY``` ，否則無法取得線上販售的廣告獲得分潤。**
 
@@ -168,6 +151,22 @@ public class MyApplication extends Application {
     }
 }
 ```
+
+## 廣告格式
+
+#### 卡片型原生影音廣告
+<p align="center">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
+</p>
+###### Layout
+------
+您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
+<TODO - Layout example>
+
+文字和圖片等素材使用標準的 ```TextView``` 和 ```ImageView``` 呈現即可，但**用來播放影音廣告的元件請務必使用 ```com.core.adnsdk.VideoPlayer```**。
+
+另外需要注意的是 -  CTA 文字需要設定 ```Background``` 屬性，**好提高廣告成效並取得更佳的分潤**。
+例如我們的範例 App 就在 [```native_video_cta_border.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/drawable/native_video_cta_border.xml) 為 ```CTA Text``` 加上了邊框且指定 ```android:background="@drawable/native_video_cta_border"```。
 
 ###### 載入並且展示原生影片廣告
 ---
