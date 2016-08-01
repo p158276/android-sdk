@@ -135,6 +135,9 @@
 
 ## 廣告格式
 #### 卡片型原生影音廣告
+<p align="center">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
+</p>
 ###### Layout
 ------
 您可以直接套用範例專案中的 [```card_ad_item.xml```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/res/layout/card_ad_item.xml) ，但是為了使用者體驗以及廣告成效，**強烈建議您根據 app 排版自行設計適合的廣告排版**。
@@ -168,9 +171,6 @@ public class MyApplication extends Application {
 
 ###### 載入並且展示原生影片廣告
 ---
-<p align="center">
-<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Card.png?raw=true" alt="Video_Card" width="216" height="384">
-</p>
 開始撰寫代碼之前，需要先引入以下的物件，完整的程式碼請參考 [```ExampleCard.java```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/ExampleCard.java)
 
 ```java
