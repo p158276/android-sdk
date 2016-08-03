@@ -22,7 +22,7 @@ import android.util.Log;
 public class AdMobInterstitial implements CustomEventInterstitial {
     private static final String TAG = "AdMobInterstitial";
 
-    public static AdInterstitial adInterstitial;
+    public AdInterstitial adInterstitial;
 
     @Override
     public void requestInterstitialAd(final Context context,
@@ -31,15 +31,12 @@ public class AdMobInterstitial implements CustomEventInterstitial {
                                       MediationAdRequest mediationAdRequest,
                                       Bundle customEventExtras) {
         Log.d(TAG, "Request AdInterstitial Ad");
-
-        if(adInterstitial != null) {
-            adInterstitial.onDestroy();
-            adInterstitial = null;
-        }
         adInterstitial = new AdInterstitial(
                 context,
                 "placement(interstitial_admob)",
                 AdInterstitialType.INTERSTITIAL_VIDEO);
+
+        AdInterstitial.addAdInterstitial(adInterstitial);
 
         adInterstitial.setTestMode(true);
         /**
@@ -124,6 +121,7 @@ public class AdMobInterstitial implements CustomEventInterstitial {
     @Override
     public void onDestroy() {
         if (adInterstitial != null) {
+            AdInterstitial.removeAdInterstitial(adInterstitial);
             adInterstitial.onDestroy();
             adInterstitial = null;
         }

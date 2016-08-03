@@ -1,5 +1,6 @@
 package com.core.vmfiveadnetwork;
 
+import com.core.adnsdk.AdInterstitial;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -13,9 +14,13 @@ import android.widget.Button;
 
 
 public class ExampleMediation extends FragmentActivity {
+    private static final String TAG = "ExampleMediation";
 
-    private static final String ADMOB_BANNER_UNIT_ID = "ca-app-pub-4125394451256992/1459988862";
-    private static final String ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-4125394451256992/2936722064";
+    // if user has multiple instances of interstitial, you need to change this constant
+    private static final int DEFAULT_INTERSTITIAL_INSTANCES = 1;
+
+    private static final String ADMOB_BANNER_UNIT_ID = "ca-app-pub-4125394451256992/1741888066";
+    private static final String ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-4125394451256992/4695354464";
 
     private AdView mAdView = null;
     private InterstitialAd mInterstitialAd = null;
@@ -52,6 +57,8 @@ public class ExampleMediation extends FragmentActivity {
                     mInterstitialAd.show();
                     interstitial_button.setText("mediation request: interstitial");
                 } else if (!mInterstitialAd.isLoading()) {
+                    // must call AdInterstitial.pruneAdInterstitials(DEFAULT_INTERSTITIAL_INSTANCES) before loadAd()
+                    AdInterstitial.pruneAdInterstitials(DEFAULT_INTERSTITIAL_INSTANCES);
                     mInterstitialAd.loadAd(new AdRequest.Builder().build());
                     interstitial_button.setText("mediation show: interstitial");
                 } else {
@@ -67,9 +74,6 @@ public class ExampleMediation extends FragmentActivity {
         if (mAdView != null) {
             mAdView.pause();
         }
-        if (AdMobInterstitial.adInterstitial != null) {
-            AdMobInterstitial.adInterstitial.onPause();
-        }
     }
 
     @Override
@@ -77,9 +81,6 @@ public class ExampleMediation extends FragmentActivity {
         super.onResume();
         if (mAdView != null) {
             mAdView.resume();
-        }
-        if (AdMobInterstitial.adInterstitial != null) {
-            AdMobInterstitial.adInterstitial.onResume();
         }
     }
 
@@ -100,9 +101,7 @@ public class ExampleMediation extends FragmentActivity {
             mAdView.destroy();
             mAdView = null;
         }
-        if (AdMobInterstitial.adInterstitial != null) {
-            AdMobInterstitial.adInterstitial.onDestroy();
-            AdMobInterstitial.adInterstitial = null;
-        }
+        // clean all interstitial instances
+        AdInterstitial.pruneAdInterstitials(0);
     }
 }
