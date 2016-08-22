@@ -513,8 +513,8 @@ import com.core.adnsdk.AdPoolListener;
 
 #### 獎勵型廣告(Reward)
 <p align="center">
-<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Reward_Front.png?raw=true" alt="Video_Card" width="216" height="384">
-<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Reward_Back.png?raw=true" alt="Video_Card" width="216" height="384">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Reward_Front.png?raw=true" alt="Video_Reward" width="216" height="384">
+<img src="https://github.com/applauseadn/android-sdk/blob/master/images/Video_Reward_Back.png?raw=true" alt="Video_Reward" width="216" height="384">
 </p>
 完整的程式碼請參考 [```MainActivity.java Reward fragment```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveAdNetwork/app/src/main/java/com/core/vmfiveadnetwork/MainActivity.java)
 
