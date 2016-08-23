@@ -19,8 +19,8 @@ public class ExampleMediation extends FragmentActivity {
     // if user has multiple instances of interstitial, you need to change this constant
     private static final int DEFAULT_INTERSTITIAL_INSTANCES = 1;
 
-    private static final String ADMOB_BANNER_UNIT_ID = "ca-app-pub-4125394451256992/1741888066";
-    private static final String ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-4125394451256992/4695354464";
+    private static final String ADMOB_BANNER_UNIT_ID = "ca-app-pub-4125394451256992/1459988862";
+    private static final String ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-4125394451256992/2936722064";
 
     private AdView mAdView = null;
     private InterstitialAd mInterstitialAd = null;

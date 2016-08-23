@@ -14,7 +14,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
-
 /**
  * Created by yangmingyi on 15/10/18.
  */
