@@ -634,6 +634,7 @@ import com.core.adnsdk.AdPoolListener;
   * [Interstitial](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Interstitial.java)
   * [Native Static](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeStatic.java)
   * [Native Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5NativeVideo.java)
+  * [Reward Video](https://github.com/applauseadn/android-sdk/blob/master/VMFiveMoPubAdapter/src/VM5Reward.java)
 
 ## Unity
   串接 Card AdView 範例 [```UnityPlayerActivity```](https://github.com/applauseadn/android-sdk/blob/master/VMFiveUnity/app/src/main/java/com/vmfive/javaunitysample/UnityPlayerActivity.java)
